@@ -18,9 +18,9 @@ function __PromiseConstructor(_handler) constructor
     {
         var _prom = new __PromiseConstructor(function(_resolve, _reject){});
         self.__Handle({
-            onFulfilled: _onFulfilled,
-            onRejected: _onRejected,
-            promise: _prom,
+            __onFulfilled: _onFulfilled,
+            __onRejected: _onRejected,
+            __promise: _prom,
         });
         return _prom;
     }
@@ -124,16 +124,16 @@ function __PromiseConstructor(_handler) constructor
                 {
                     var _deff = __deff;
                     with(__self) {
-                        var _cb = __state == 1 ? _deff.onFulfilled : _deff.onRejected;
+                        var _cb = __state == 1 ? _deff.__onFulfilled : _deff.__onRejected;
                         if (_cb == undefined)
                         {
                             if (__state == 1)
                             {
-                                _deff.promise.__Resolve(__value);
+                                _deff.__promise.__Resolve(__value);
                             }
                             else
                             {
-                                _deff.promise.__Reject(__value);
+                                _deff.__promise.__Reject(__value);
                             }
                             
                             return;
@@ -146,10 +146,10 @@ function __PromiseConstructor(_handler) constructor
                         }
                         catch(_err)
                         {
-                            _deff.promise.__Reject(_err);
+                            _deff.__promise.__Reject(_err);
                             return;
                         }
-                        _deff.promise.__Resolve(_ret);
+                        _deff.__promise.__Resolve(_ret);
                     }
                 });
             }
