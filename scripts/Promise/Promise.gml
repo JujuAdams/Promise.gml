@@ -17,7 +17,7 @@ function __PromiseConstructor(_handler) constructor
     static Then = function(_onFulfilled, _onRejected)
     {
         var _prom = new __PromiseConstructor(function(_resolve, _reject){});
-        self.__Handle({
+        __Handle({
             __onFulfilled: _onFulfilled,
             __onRejected: _onRejected,
             __promise: _prom,
@@ -168,46 +168,46 @@ function __PromiseConstructor(_handler) constructor
             {
                 if (is_instanceof(_newValue, __PromiseConstructor))
                 {
-                    self.__state = 3;
-                    self.__value = _newValue;
-                    self.__Finale();
+                    __state = 3;
+                    __value = _newValue;
+                    __Finale();
                     return;
                 }
                 
                 var _then = _newValue[$ "Then"];
                 if (is_method(_then))
                 {
-                    self.__DoResolve(method(_newValue, _then));
+                    __DoResolve(method(_newValue, _then));
                     return;
                 }
             }
-            self.__state = 1;
-            self.__value = _newValue;
-            self.__Finale();
+            __state = 1;
+            __value = _newValue;
+            __Finale();
         }
         catch(_e)
         {
-            self.__Reject(_newValue);
+            __Reject(_newValue);
         }
     }
     
     static __Reject = function(_newValue)
     {
-        self.__state = 2;
-        self.__value = _newValue;
-        self.__Finale();
+        __state = 2;
+        __value = _newValue;
+        __Finale();
     }
     
     static __Finale = function()
     {
         static _soonArray = __PromiseSystem().__soonArray;
         
-        var _len = array_length(self.__deferreds);
-        if ((self.__state == 2) && (_len == 0))
+        var _len = array_length(__deferreds);
+        if ((__state == 2) && (_len == 0))
         {
             array_push(_soonArray, function()
             {
-                if (not self.__handled)
+                if (not __handled)
                 {
                     show_debug_message($"Unhandled promise rejection: {__value}");
                 }
@@ -216,11 +216,11 @@ function __PromiseConstructor(_handler) constructor
         
         for (var _i = 0; _i < _len; _i++)
         {
-            self.__Handle(self.__deferreds[_i]);
+            __Handle(__deferreds[_i]);
         }
         
-        self.__deferreds = undefined;
+        __deferreds = undefined;
     }
     
-    self.__DoResolve(_handler);
+    __DoResolve(_handler);
 }
