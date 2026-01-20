@@ -5,7 +5,7 @@
 # Promise.gml
 An adaptation of JavaScript
 [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
-for GameMaker Studio 2.3+, based on [this polyfill](https://github.com/taylorhakes/promise-polyfill).
+for GameMaker Studio 2024.14, based on [this polyfill](https://github.com/taylorhakes/promise-polyfill).
 
 ## JS➜GML Equivalents
 
