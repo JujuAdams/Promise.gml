@@ -36,41 +36,58 @@ GameMaker does not allow naming methods same as keywords, therefore:
 Can also be found in the sample project, along with supporting scripts.
 
 Basic (ft. custom setTimeout):
-```js
-(new Promise(function(done, fail) {
-	setTimeout(function(_done, _fail) {
-		if (random(2) >= 1) _done("hello!"); else _fail("bye!");
-	}, 250, done, fail);
-})).andThen(function(_val) {
-	trace("resolved!", _val);
-}, function(_val) {
-	trace("failed!", _val);
-})
+```gml
+Promise(
+	function(done, fail) {
+		setTimeout(
+		function(_done, _fail) {
+			if (random(2) >= 1) _done("hello!"); else _fail("bye!");
+		},
+		250, done, fail);
+	}
+).Then(
+	function(_val) {
+		trace("resolved!", _val);
+	},
+	function(_val) {
+		trace("failed!", _val);
+	}
+);
 ```
 
 afterAll:
-```js
-Promise.afterAll([
-	Promise.resolve(3),
+```gml
+PromiseAll([
+	PromiseResolve(3),
 	42,
-	new Promise(function(resolve, reject) {
-		setTimeout(resolve, 100, "foo");
-	})
-]).andThen(function(values) {
-	trace(values);
-});
+	Promise(
+		function(resolve, reject) {
+			setTimeout(resolve, 100, "foo");
+		}
+	)
+]).Then(
+	function(values) {
+		trace(values);
+	}
+);
 ```
 
 Chaining HTTP requests (ft. custom HTTP wrappers):
-```js
-http_get_promise("https://yal.cc/ping").andThen(function(v) {
-	trace("success", v);
-	return http_get_promise("https://yal.cc/ping");
-}).andThen(function(v) {
-	trace("success2", v);
-}).andCatch(function(e) {
-	trace("failed", e);
-})
+```gml
+http_get_promise("https://yal.cc/ping").Then(
+	function(v) {
+		trace("success", v);
+		return http_get_promise("https://yal.cc/ping");
+	}
+).Then(
+	function(v) {
+		trace("success2", v);
+	}
+).Catch(
+	function(e) {
+		trace("failed", e);
+	}
+);
 ```
 
 ## Caveats
