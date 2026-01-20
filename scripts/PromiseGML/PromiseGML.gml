@@ -77,6 +77,9 @@ function __Promise(_handler/*:function*/) constructor {
 	}
 	
 	static __handle = function(_deferred) {
+        static _staticSoon = __PromiseSystem().__soon;
+        var _soon = _staticSoon;
+        
 		var _self = self;
 		while (_self.__state == 3) _self = _self.__value;
 		with (_self) {
@@ -88,7 +91,7 @@ function __Promise(_handler/*:function*/) constructor {
 			with ({
 				__self: _self,
 				__deff: _deferred,
-			}) ds_list_add(__Promise_soon, function() {
+			}) ds_list_add(_soon, function() {
 				var _deff = __deff;
 				with (__self) {
 					var _cb = __state == 1 ? _deff.onFulfilled : _deff.onRejected;
@@ -146,9 +149,10 @@ function __Promise(_handler/*:function*/) constructor {
 	}
 	
 	static __finale = function() {
+        static _soon = __PromiseSystem().__soon;
 		var _len = array_length(self.__deferreds);
 		if (self.__state == 2 && _len == 0) {
-			ds_list_add(__Promise_soon, function() {
+			ds_list_add(_soon, function() {
 				if (!self.__handled) {
 					show_debug_message("Possible Unhandled Promise Rejection: " + string(__value));
 				}
@@ -164,13 +168,11 @@ function __Promise(_handler/*:function*/) constructor {
 }
 
 /// @hint new Promise(fn:function)
-globalvar Promise; Promise = /*#cast*/ method({}, __Promise);
-
-globalvar __Promise_soon; __Promise_soon = ds_list_create(); /// @is {ds_list<function>}
+globalvar Promise; Promise = __PromiseSystem().__function;
 
 /// @hint Promise.update()
 function __Promise_update() {
-	var _soon = __Promise_soon;
+	static _soon = __PromiseSystem().__soon;
 	if (ds_list_empty(_soon)) exit;
 	static _copy = ds_list_create();
 	ds_list_clear(_copy);

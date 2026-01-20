@@ -26,6 +26,7 @@
     {"id":{"name":"fnt_test","path":"fonts/fnt_test/fnt_test.yy",},},
     {"id":{"name":"obj_test","path":"objects/obj_test/obj_test.yy",},},
     {"id":{"name":"rm_test","path":"rooms/rm_test/rm_test.yy",},},
+    {"id":{"name":"__PromiseSystem","path":"scripts/__PromiseSystem/__PromiseSystem.yy",},},
     {"id":{"name":"get_string_cb","path":"scripts/get_string_cb/get_string_cb.yy",},},
     {"id":{"name":"http_get_cb","path":"scripts/http_get_cb/http_get_cb.yy",},},
     {"id":{"name":"PromiseGML","path":"scripts/PromiseGML/PromiseGML.yy",},},
