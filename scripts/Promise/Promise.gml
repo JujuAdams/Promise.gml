@@ -9,19 +9,21 @@ function __PromiseConstructor(_handler) constructor
 {
     if (not is_method(_handler)) show_error("Not a function", true);
     
-    __handled = false;
-    __state = 0;
-    __value = undefined;
+    __handled   = false;
+    __state     = __PROMISE_STATE_PENDING;
+    __value     = undefined;
     __deferreds = [];
     
     static Then = function(_onFulfilled, _onRejected)
     {
         var _prom = new __PromiseConstructor(function(_resolve, _reject){});
+        
         __Handle({
             __onFulfilled: _onFulfilled,
-            __onRejected: _onRejected,
-            __promise: _prom,
+            __onRejected:  _onRejected,
+            __promise:     _prom,
         });
+        
         return _prom;
     }
     
@@ -104,10 +106,10 @@ function __PromiseConstructor(_handler) constructor
         var _soonArray = _staticSoonArray;
         
         var _self = self;
-        while (_self.__state == 3) _self = _self.__value;
+        while(_self.__state == __PROMISE_STATE_PASSTHROUGH) _self = _self.__value;
         with(_self)
         {
-            if (__state == 0)
+            if (__state == __PROMISE_STATE_PENDING)
             {
                 array_push(__deferreds, _deferred);
                 return;
@@ -123,11 +125,12 @@ function __PromiseConstructor(_handler) constructor
                 array_push(_soonArray, function()
                 {
                     var _deff = __deff;
-                    with(__self) {
-                        var _cb = __state == 1 ? _deff.__onFulfilled : _deff.__onRejected;
+                    with(__self)
+                    {
+                        var _cb = (__state == __PROMISE_STATE_FULFILLED)? _deff.__onFulfilled : _deff.__onRejected;
                         if (_cb == undefined)
                         {
-                            if (__state == 1)
+                            if (__state == __PROMISE_STATE_FULFILLED)
                             {
                                 _deff.__promise.__Resolve(__value);
                             }
@@ -168,7 +171,7 @@ function __PromiseConstructor(_handler) constructor
             {
                 if (is_instanceof(_newValue, __PromiseConstructor))
                 {
-                    __state = 3;
+                    __state = __PROMISE_STATE_PASSTHROUGH;
                     __value = _newValue;
                     __Finale();
                     return;
@@ -181,7 +184,8 @@ function __PromiseConstructor(_handler) constructor
                     return;
                 }
             }
-            __state = 1;
+            
+            __state = __PROMISE_STATE_FULFILLED;
             __value = _newValue;
             __Finale();
         }
@@ -193,7 +197,7 @@ function __PromiseConstructor(_handler) constructor
     
     static __Reject = function(_newValue)
     {
-        __state = 2;
+        __state = __PROMISE_STATE_REJECTED;
         __value = _newValue;
         __Finale();
     }
@@ -203,7 +207,7 @@ function __PromiseConstructor(_handler) constructor
         static _soonArray = __PromiseSystem().__soonArray;
         
         var _length = array_length(__deferreds);
-        if ((__state == 2) && (_length == 0))
+        if ((__state == __PROMISE_STATE_REJECTED) && (_length == 0))
         {
             array_push(_soonArray, function()
             {

@@ -2,7 +2,9 @@
 
 function PromiseAll(_arr)
 {
-    with({__arr: _arr})
+    with({
+        __arr: _arr
+    })
     {
         return new __PromiseConstructor(function(_resolve, _reject)
         {
@@ -35,24 +37,24 @@ function PromiseAll(_arr)
     }
 }
 
-function __PromiseAllResult(_arguments, _index, _val, _resolve, _reject, _remaining)
+function __PromiseAllResult(_arguments, _index, _value, _resolve, _reject, _remaining)
 {
     try
     {
-        if (is_struct(_val) && is_method(_val[$ "Then"]))
+        if (is_struct(_value) && is_method(_value[$ "Then"]))
         {
             with({
                 __index:     _index,
-                __arguments:      _arguments,
+                __arguments: _arguments,
                 __Resolve:   _resolve,
                 __Reject:    _reject,
                 __remaining: _remaining,
             })
             {
-                _val.Then(
-                    function(_val)
+                _value.Then(
+                    function(_value)
                     {
-                        __PromiseAllResult(__arguments, __index, _val, __Resolve, __Reject, __remaining);
+                        __PromiseAllResult(__arguments, __index, _value, __Resolve, __Reject, __remaining);
                     },
                     _reject
                 );
@@ -61,7 +63,7 @@ function __PromiseAllResult(_arguments, _index, _val, _resolve, _reject, _remain
             return;
         }
         
-        _arguments[@ _index] = _val;
+        _arguments[@ _index] = _value;
         
         if ((--_remaining[@ 0]) <= 0)
         {

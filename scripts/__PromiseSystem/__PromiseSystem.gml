@@ -3,6 +3,11 @@
 // Promise.gml
 // an adaptation of https://github.com/taylorhakes/promise-polyfill/
 
+#macro __PROMISE_STATE_PENDING      0
+#macro __PROMISE_STATE_FULFILLED    1
+#macro __PROMISE_STATE_REJECTED     2
+#macro __PROMISE_STATE_PASSTHROUGH  3
+
 __PromiseSystem();
 
 function __PromiseSystem()
@@ -13,7 +18,7 @@ function __PromiseSystem()
     _system = {};
     with(_system)
     {
-        show_debug_message("Welcome to Promise.gml by Juju Adams! Promise.gml is built on top of work by YellowAfterlife and Taylor Hakes");
+        show_debug_message("Welcome to Promise.gml by YellowAfterlife with edits by Juju Adams! Promise.gml is built on top of work by Taylor Hakes");
         
         __soonArray = [];
         

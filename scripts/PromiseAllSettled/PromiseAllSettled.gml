@@ -2,7 +2,9 @@
 
 function PromiseAllSettled(_arr)
 {
-    with({__arr: _arr})
+    with({
+        __arr: _arr
+    })
     {
         return new __PromiseConstructor(function(_resolve, _reject)
         {
@@ -35,11 +37,11 @@ function PromiseAllSettled(_arr)
     }
 }
 
-function __PromiseAllSettledResult(_arguments, _index, _val, _resolve, _reject, _remaining)
+function __PromiseAllSettledResult(_arguments, _index, _value, _resolve, _reject, _remaining)
 {
     try
     {
-        if (is_struct(_val) && is_method(_val[$ "Then"]))
+        if (is_struct(_value) && is_method(_value[$ "Then"]))
         {
             with({
                 __index:     _index,
@@ -49,15 +51,16 @@ function __PromiseAllSettledResult(_arguments, _index, _val, _resolve, _reject, 
                 __remaining: _remaining,
             })
             {
-                _val.Then(
-                    function(_val)
+                _value.Then(
+                    function(_value)
                     {
-                        __PromiseAllSettledResult(__arguments, __index, _val, __Resolve, __Reject, __remaining);
+                        __PromiseAllSettledResult(__arguments, __index, _value, __Resolve, __Reject, __remaining);
                     },
                     function(_err)
                     {
                         __arguments[@ __index] = {
                             success: false,
+                            value:   undefined,
                             reason: _err,
                         };
                         
@@ -74,7 +77,8 @@ function __PromiseAllSettledResult(_arguments, _index, _val, _resolve, _reject, 
         
         _arguments[@ _index] = {
             success: true,
-            value: _val,
+            value:   _value,
+            reason:  undefined,
         };
         
         if ((--_remaining[@ 0]) == 0)
