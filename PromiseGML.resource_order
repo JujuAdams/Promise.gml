@@ -1,7 +1,6 @@
 {
   "FolderOrderSettings":[],
   "ResourceOrderSettings":[
-    {"name":"fnt_test","order":2,"path":"fonts/fnt_test/fnt_test.yy",},
     {"name":"rm_test","order":1,"path":"rooms/rm_test/rm_test.yy",},
     {"name":"__PromiseSupport","order":3,"path":"scripts/__PromiseSupport/__PromiseSupport.yy",},
     {"name":"__PromiseSystem","order":2,"path":"scripts/__PromiseSystem/__PromiseSystem.yy",},

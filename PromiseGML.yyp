@@ -23,7 +23,6 @@
   },
   "name":"PromiseGML",
   "resources":[
-    {"id":{"name":"fnt_test","path":"fonts/fnt_test/fnt_test.yy",},},
     {"id":{"name":"obj_test","path":"objects/obj_test/obj_test.yy",},},
     {"id":{"name":"rm_test","path":"rooms/rm_test/rm_test.yy",},},
     {"id":{"name":"__PromiseSupport","path":"scripts/__PromiseSupport/__PromiseSupport.yy",},},

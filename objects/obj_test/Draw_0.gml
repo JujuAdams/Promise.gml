@@ -1,7 +1,5 @@
-/// @description Insert description here
-// You can write your code in this editor
 numButtons = 0;
-draw_set_font(fnt_test);
+
 var button = function(name) {
 	draw_text(10, 10 + 30 * numButtons, "[" + string(numButtons + 1) + "]: " + name);
 	return keyboard_check_pressed(ord("1") + numButtons++);
