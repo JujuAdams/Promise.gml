@@ -1,7 +1,17 @@
-// Promise.gml
-// an adaptation of https://github.com/taylorhakes/promise-polyfill/
-function __Promise(_handler) constructor {
+// Feather disable all
+
+globalvar Promise; Promise = __PromiseSystem().__function;
+
+Promise.resolve    = __PromiseResolve;
+Promise.reject     = __PromiseReject;
+Promise.afterAll   = __PromiseAll;
+Promise.allSettled = __PromiseAllSettled;
+Promise.race       = __PromiseRace;
+
+function __PromiseConstructor(_handler) constructor
+{
 	if (!is_method(_handler)) show_error("Not a function", true);
+    
 	__isPromise = true;
 	__handled = false;
 	__state = 0;
@@ -9,7 +19,7 @@ function __Promise(_handler) constructor {
 	__deferreds = [];
 	
 	static Then = function(_onFulfilled, _onRejected) {
-		var _prom = new __Promise(function(_resolve, _reject){});
+		var _prom = new __PromiseConstructor(function(_resolve, _reject){});
 		self.__Handle({
 			onFulfilled: _onFulfilled,
 			onRejected: _onRejected,

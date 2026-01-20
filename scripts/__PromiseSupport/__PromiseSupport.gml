@@ -3,7 +3,7 @@
 function __PromiseResolve(_value) {
 	if (is_struct(_value) && _value[$"__isPromise"]) return _value;
 	with ({ __value: _value }) {
-		return new __Promise(function(_resolve, _reject) {
+		return new __PromiseConstructor(function(_resolve, _reject) {
 			_resolve(__value);
 		});
 	}
@@ -11,7 +11,7 @@ function __PromiseResolve(_value) {
 
 function __PromiseReject(_value) {
 	with ({ __value: _value }) {
-		return new __Promise(function(_resolve, _reject) {
+		return new __PromiseConstructor(function(_resolve, _reject) {
 			_reject(__value);
 		});
 	}
@@ -41,7 +41,7 @@ function __PromiseAllResult(_args, _ind, _val, _resolve, _reject, _remaining) {
 }
 
 function __PromiseAll(_arr) {
-	with ({__arr: _arr}) return new __Promise(function(_resolve, _reject) {
+	with ({__arr: _arr}) return new __PromiseConstructor(function(_resolve, _reject) {
 		if (!is_array(__arr)) {
 			try {
 				show_error("Promise.all accepts an array", 0);
@@ -85,7 +85,7 @@ function __PromiseAllSettledResult(_args, _ind, _val, _resolve, _reject, _remain
 }
 
 function __PromiseAllSettled(_arr) {
-	with ({__arr: _arr}) return new __Promise(function(_resolve, _reject) {
+	with ({__arr: _arr}) return new __PromiseConstructor(function(_resolve, _reject) {
 		if (!is_array(__arr)) {
 			try {
 				show_error("Promise.allSettled accepts an array", 0);
@@ -105,7 +105,7 @@ function __PromiseAllSettled(_arr) {
 }
 
 function __PromiseRace(_arr) {
-	with ({__arr: _arr}) return new __Promise(function(_resolve, _reject) {
+	with ({__arr: _arr}) return new __PromiseConstructor(function(_resolve, _reject) {
 		if (!is_array(__arr)) {
 			try {
 				show_error("Promise.race accepts an array", 0);
