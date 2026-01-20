@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "async",
-    "path": "folders/Demo/async.yy",
+  "$GMScript":"v1",
+  "%Name":"setTimeout",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"setTimeout",
+  "parent":{
+    "name":"async",
+    "path":"folders/Demo/async.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "setTimeout",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

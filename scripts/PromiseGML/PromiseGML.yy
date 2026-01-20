@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "Promise.gml",
-    "path": "folders/Promise.gml.yy",
+  "$GMScript":"v1",
+  "%Name":"PromiseGML",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"PromiseGML",
+  "parent":{
+    "name":"Promise.gml",
+    "path":"folders/Promise.gml.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "PromiseGML",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }
