@@ -26,6 +26,8 @@ function __PromiseSystem()
         
         __soonArray = [];
         
+        __callbackDict = {};
+        
         time_source_start(time_source_create(time_source_global, 1, time_source_units_frames, function()
         {
             static _workArray = [];

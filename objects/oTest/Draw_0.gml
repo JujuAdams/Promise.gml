@@ -93,21 +93,21 @@ if (button("Race()"))
 
 if (button("HTTP requests"))
 {
-    http_get_promise("https://yal.cc/ping").Then(
+    Promise_http_get("https://yal.cc/ping").Then(
         function(_value)
         {
-            show_debug_message($"success {_value}");
-            return http_get_promise("https://yal.cc/ping");
+            show_debug_message($"success {json_stringify(_value.result)}");
+            return Promise_http_get("https://yal.cc/ping");
         }
     ).Then(
         function(_value)
         {
-            show_debug_message($"success2 {_value}");
+            show_debug_message($"success2 {json_stringify(_value.result)}");
         }
     ).Catch(
         function(_value)
         {
-            show_debug_message($"failed {_value}");
+            show_debug_message($"failed {json_stringify(_value.result)}");
         }
     );
 }
@@ -135,7 +135,7 @@ if (button("messages"))
                 show_debug_message([ip, port, alias]);
             }
         ).Catch(
-            function(e)
+            function(_error)
             {
                 show_debug_message("Cancelled!");
             }

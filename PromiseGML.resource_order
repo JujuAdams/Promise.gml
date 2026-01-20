@@ -1,10 +1,13 @@
 {
   "FolderOrderSettings":[
     {"name":"Async","order":2,"path":"folders/Demo/Async.yy",},
-    {"name":"(System)","order":6,"path":"folders/Promise.gml/(System).yy",},
+    {"name":"(System)","order":8,"path":"folders/Promise.gml/(System).yy",},
+    {"name":"HTTP","order":6,"path":"folders/Promise.gml/HTTP.yy",},
   ],
   "ResourceOrderSettings":[
+    {"name":"__PromiseObject","order":2,"path":"objects/__PromiseObject/__PromiseObject.yy",},
     {"name":"rTest","order":1,"path":"rooms/rTest/rTest.yy",},
+    {"name":"__PromiseEnsureInstance","order":3,"path":"scripts/__PromiseEnsureInstance/__PromiseEnsureInstance.yy",},
     {"name":"get_string_cb","order":2,"path":"scripts/get_string_cb/get_string_cb.yy",},
     {"name":"http_get_cb","order":1,"path":"scripts/http_get_cb/http_get_cb.yy",},
     {"name":"PromiseAll","order":3,"path":"scripts/PromiseAll/PromiseAll.yy",},

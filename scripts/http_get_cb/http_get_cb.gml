@@ -10,7 +10,14 @@ function __http_get_cb_async() {
 }
 function http_get_cb(_url, _func) {
     var _index = http_get(_url);
-    if (_index >= 0) __http_get_cb_map[?_index] = _func;
+    if (_index >= 0)
+    {
+        __http_get_cb_map[?_index] = _func;
+    }
+    else
+    {
+        _func({ status: -1, http_status: 404 });
+    }
 }
 
 function http_get_promise(_url) {

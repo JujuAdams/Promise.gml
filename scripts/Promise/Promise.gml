@@ -1,13 +1,24 @@
 // Feather disable all
 
+/// @param handler
+
 function Promise(_handler)
 {
+    if (not is_callable(_handler))
+    {
+        show_error("Not a function", true);
+    }
+    
     return new __PromiseConstructor(_handler);
 }
 
+
+
+/// @param [handler]
+
 function __PromiseConstructor(_handler) constructor
 {
-    if (not is_method(_handler)) show_error("Not a function", true);
+    _handler ??= function() {}
     
     __handled   = false;
     __state     = __PROMISE_STATE_PENDING;

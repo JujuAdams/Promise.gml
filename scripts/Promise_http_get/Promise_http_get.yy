@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"Promise_http_get",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Promise_http_get",
+  "parent":{
+    "name":"HTTP",
+    "path":"folders/Promise.gml/HTTP.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
