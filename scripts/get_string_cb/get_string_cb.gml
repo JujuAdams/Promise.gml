@@ -8,8 +8,8 @@ function __get_string_cb_async() {
 }
 
 function get_string_cb(_message, _default, _func) {
-    var _ind = get_string_async(_message, _default);
-    if (_ind >= 0) __get_string_cb_map[?_ind] = _func;
+    var _index = get_string_async(_message, _default);
+    if (_index >= 0) __get_string_cb_map[?_index] = _func;
 }
 
 function get_string_promise(_message, _default) {

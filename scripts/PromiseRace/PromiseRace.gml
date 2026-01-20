@@ -2,7 +2,9 @@
 
 function PromiseRace(_arr)
 {
-    with({__arr: _arr})
+    with({
+        __arr: _arr
+    })
     {
         return new __PromiseConstructor(function(_resolve, _reject)
         {
@@ -18,10 +20,11 @@ function PromiseRace(_arr)
                 }
             }
             
-            var _len = array_length(__arr);
-            for (var _ind = 0; _ind < _len; _ind++)
+            var _i = 0;
+            repeat(array_length(__arr))
             {
-                PromiseResolve(__arr[_ind]).Then(_resolve, _reject);
+                PromiseResolve(__arr[_i]).Then(_resolve, _reject);
+                ++_i;
             }
         });
     }

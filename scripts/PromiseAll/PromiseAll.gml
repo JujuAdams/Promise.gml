@@ -18,29 +18,32 @@ function PromiseAll(_arr)
                 }
             }
             
-            var _len = array_length(__arr);
-            var _args = array_create(_len);
-            if (_len == 0) return _resolve(_args);
-            array_copy(_args, 0, __arr, 0, _len);
+            var _length = array_length(__arr);
+            var _arguments = array_create(_length);
+            if (_length == 0) return _resolve(_arguments);
             
-            var _remaining = [_len];
-            for (var _ind = 0; _ind < _len; _ind++)
+            array_copy(_arguments, 0, __arr, 0, _length);
+            var _remaining = [_length];
+            
+            var _i = 0;
+            repeat(_length)
             {
-                __PromiseAllResult(_args, _ind, _args[_ind], _resolve, _reject, _remaining);
+                __PromiseAllResult(_arguments, _i, _arguments[_i], _resolve, _reject, _remaining);
+                ++_i;
             }
         });
     }
 }
 
-function __PromiseAllResult(_args, _ind, _val, _resolve, _reject, _remaining)
+function __PromiseAllResult(_arguments, _index, _val, _resolve, _reject, _remaining)
 {
     try
     {
         if (is_struct(_val) && is_method(_val[$ "Then"]))
         {
             with({
-                __ind:       _ind,
-                __args:      _args,
+                __index:     _index,
+                __arguments:      _arguments,
                 __Resolve:   _resolve,
                 __Reject:    _reject,
                 __remaining: _remaining,
@@ -49,7 +52,7 @@ function __PromiseAllResult(_args, _ind, _val, _resolve, _reject, _remaining)
                 _val.Then(
                     function(_val)
                     {
-                        __PromiseAllResult(__args, __ind, _val, __Resolve, __Reject, __remaining);
+                        __PromiseAllResult(__arguments, __index, _val, __Resolve, __Reject, __remaining);
                     },
                     _reject
                 );
@@ -58,11 +61,11 @@ function __PromiseAllResult(_args, _ind, _val, _resolve, _reject, _remaining)
             return;
         }
         
-        _args[@ _ind] = _val;
+        _arguments[@ _index] = _val;
         
         if ((--_remaining[@ 0]) <= 0)
         {
-            _resolve(_args);
+            _resolve(_arguments);
         }
     }
     catch(_e)

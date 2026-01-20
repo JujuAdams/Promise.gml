@@ -202,8 +202,8 @@ function __PromiseConstructor(_handler) constructor
     {
         static _soonArray = __PromiseSystem().__soonArray;
         
-        var _len = array_length(__deferreds);
-        if ((__state == 2) && (_len == 0))
+        var _length = array_length(__deferreds);
+        if ((__state == 2) && (_length == 0))
         {
             array_push(_soonArray, function()
             {
@@ -214,9 +214,11 @@ function __PromiseConstructor(_handler) constructor
             });
         }
         
-        for (var _i = 0; _i < _len; _i++)
+        var _i = 0;
+        repeat(_length)
         {
             __Handle(__deferreds[_i]);
+            ++_i;
         }
         
         __deferreds = undefined;

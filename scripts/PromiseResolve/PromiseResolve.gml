@@ -7,7 +7,9 @@ function PromiseResolve(_value)
         return _value;
     }
     
-    with({ __value: _value })
+    with({
+        __value: _value
+    })
     {
         return new __PromiseConstructor(function(_resolve, _reject)
         {

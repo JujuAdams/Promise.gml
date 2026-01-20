@@ -14,14 +14,14 @@ function __setTimeout_update() {
 function setTimeout(_func, _time) {
     var _i = argument_count;
     if (_i > 2) {
-        var _args = array_create(_i - 2);
-        while (--_i >= 2) _args[_i - 2] = argument[_i];
+        var _arguments = array_create(_i - 2);
+        while (--_i >= 2) _arguments[_i - 2] = argument[_i];
         _func = method({
             __index: method_get_index(_func),
             __self: method_get_self(_func),
-            __args: _args
+            __arguments: _arguments
         }, function() {
-            with(__self) script_execute_ext(other.__index, other.__args);
+            with(__self) script_execute_ext(other.__index, other.__arguments);
         });
     }
     ds_priority_add(__setTimeout_list, _func, get_timer() + _time * 1000);

@@ -9,8 +9,8 @@ function __http_get_cb_async() {
     _func(json_parse(json_encode(async_load)));
 }
 function http_get_cb(_url, _func) {
-    var _ind = http_get(_url);
-    if (_ind >= 0) __http_get_cb_map[?_ind] = _func;
+    var _index = http_get(_url);
+    if (_index >= 0) __http_get_cb_map[?_index] = _func;
 }
 
 function http_get_promise(_url) {
