@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"http_get_cb",
+  "%Name":"Promise_http_request",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"http_get_cb",
+  "name":"Promise_http_request",
   "parent":{
-    "name":"Async",
-    "path":"folders/Demo/Async.yy",
+    "name":"HTTP",
+    "path":"folders/Promise.gml/HTTP.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

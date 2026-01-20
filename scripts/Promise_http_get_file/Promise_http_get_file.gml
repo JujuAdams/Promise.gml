@@ -1,16 +1,18 @@
 // Feather disable all
 
 /// @param url
+/// @param dest
 
-function Promise_http_get(_url)
+function Promise_http_get_file(_url, _filename)
 {
     __PromiseEnsureInstance();
     
     return new __PromiseConstructor(
         method({
-            __url:     _url,
-            __Resolve: undefined,
-            __Reject:  undefined,
+            __url:      _url,
+            __filename: _filename,
+            __Resolve:  undefined,
+            __Reject:   undefined,
         },
         function(_resolve, _reject)
         {
@@ -19,7 +21,7 @@ function Promise_http_get(_url)
             __Resolve = _resolve;
             __Reject  = _reject;
             
-            var _index = http_get(__url);
+            var _index = http_get_file(__url, __filename);
             if (_index >= 0)
             {
                 _callbackDict[$ $"HTTP {_index}"] = self;
