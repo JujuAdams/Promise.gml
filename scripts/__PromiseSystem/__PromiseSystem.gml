@@ -1,7 +1,11 @@
 // Feather disable all
 
 // Promise.gml
-// an adaptation of https://github.com/taylorhakes/promise-polyfill/
+// https://github.com/YAL-GameMaker/Promise.gml
+// 
+// Made by YellowAfterlif
+// An adaptation of https://github.com/taylorhakes/promise-polyfill/
+// Editted by Juju Adams
 
 #macro __PROMISE_STATE_PENDING      0
 #macro __PROMISE_STATE_FULFILLED    1
@@ -18,7 +22,7 @@ function __PromiseSystem()
     _system = {};
     with(_system)
     {
-        show_debug_message("Welcome to Promise.gml by YellowAfterlife with edits by Juju Adams! Promise.gml is built on top of work by Taylor Hakes");
+        show_debug_message("Welcome to Promise.gml by YellowAfterlife with edits by Juju Adams! Promise.gml is built on top of work by Taylor Hakes. This is version 1.0.0, 2026-01-20");
         
         __soonArray = [];
         
