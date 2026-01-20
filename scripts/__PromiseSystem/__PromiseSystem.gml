@@ -15,25 +15,28 @@ function __PromiseSystem()
     {
         show_debug_message("Welcome to Promise.gml by Juju Adams! Promise.gml is built on top of work by YellowAfterlife and Taylor Hakes");
         
-        __soon = ds_list_create();
+        __soonArray = [];
         
         time_source_start(time_source_create(time_source_global, 1, time_source_units_frames, function()
         {
-            if (ds_list_empty(__soon)) return;
+            static _workArray = [];
+            array_resize(_workArray, 0);
             
-            static _copy = ds_list_create();
-            ds_list_clear(_copy);
-            
-            ds_list_copy(_copy, __soon);
-            ds_list_clear(__soon);
-            
-            var _len = ds_list_size(_copy);
-            for (var _ind = 0; _ind < _len; _ind++)
+            var _soonCount = array_length(__soonArray);
+            if (_soonCount <= 0)
             {
-                _copy[| _ind]();
+                return;
             }
             
-            ds_list_clear(_copy);
+            array_copy(_workArray, 0, __soonArray, 0, _soonCount);
+            array_resize(__soonArray, 0);
+            
+            var _i = 0;
+            repeat(_soonCount)
+            {
+                _workArray[_i]();
+                ++_i;
+            }
         },
         [], -1));
     }

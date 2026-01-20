@@ -60,10 +60,12 @@ if (button("AllSettled()"))
         {
             setTimeout(_reject, 100, "drats");
         })
-    ]).Then(function(values)
-    {
-        trace(values);
-    });
+    ]).Then(
+        function(values)
+        {
+            trace(values);
+        }
+    );
 }
 
 if (button("Race()"))

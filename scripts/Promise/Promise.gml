@@ -100,8 +100,8 @@ function __PromiseConstructor(_handler) constructor
     
     static __Handle = function(_deferred)
     {
-        static _staticSoon = __PromiseSystem().__soon;
-        var _soon = _staticSoon;
+        static _staticSoonArray = __PromiseSystem().__soonArray;
+        var _soonArray = _staticSoonArray;
         
         var _self = self;
         while (_self.__state == 3) _self = _self.__value;
@@ -112,13 +112,15 @@ function __PromiseConstructor(_handler) constructor
                 array_push(__deferreds, _deferred);
                 return;
             }
+            
             __handled = true;
+            
             with({
                 __self: _self,
                 __deff: _deferred,
             })
             {
-                ds_list_add(_soon, function()
+                array_push(_soonArray, function()
                 {
                     var _deff = __deff;
                     with(__self) {
@@ -198,7 +200,7 @@ function __PromiseConstructor(_handler) constructor
     
     static __Finale = function()
     {
-        static _soon = __PromiseSystem().__soon;
+        static _soon = __PromiseSystem().__soonArray;
         
         var _len = array_length(self.__deferreds);
         if ((self.__state == 2) && (_len == 0))
