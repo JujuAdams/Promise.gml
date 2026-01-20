@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "async",
-    "path": "folders/Demo/async.yy",
+  "$GMScript":"v1",
+  "%Name":"get_string_cb",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"get_string_cb",
+  "parent":{
+    "name":"Async",
+    "path":"folders/Demo/Async.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "get_string_cb",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }
