@@ -1,7 +1,7 @@
 {
   "FolderOrderSettings":[
     {"name":"Async","order":2,"path":"folders/Demo/Async.yy",},
-    {"name":"(System)","order":6,"path":"folders/Promise/(System).yy",},
+    {"name":"(System)","order":6,"path":"folders/Promise.gml/(System).yy",},
   ],
   "ResourceOrderSettings":[
     {"name":"rTest","order":1,"path":"rooms/rTest/rTest.yy",},

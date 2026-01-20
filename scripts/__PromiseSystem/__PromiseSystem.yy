@@ -6,7 +6,7 @@
   "name":"__PromiseSystem",
   "parent":{
     "name":"(System)",
-    "path":"folders/Promise/(System).yy",
+    "path":"folders/Promise.gml/(System).yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

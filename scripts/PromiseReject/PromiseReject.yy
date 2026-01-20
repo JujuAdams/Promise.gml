@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"PromiseReject",
   "parent":{
-    "name":"Promise",
-    "path":"folders/Promise.yy",
+    "name":"Promise.gml",
+    "path":"folders/Promise.gml.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
