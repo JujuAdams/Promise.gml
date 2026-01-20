@@ -1,9 +1,10 @@
 {
   "FolderOrderSettings":[
+    {"name":"Async","order":2,"path":"folders/Demo/Async.yy",},
     {"name":"(System)","order":6,"path":"folders/Promise/(System).yy",},
   ],
   "ResourceOrderSettings":[
-    {"name":"rm_test","order":1,"path":"rooms/rm_test/rm_test.yy",},
+    {"name":"rTest","order":1,"path":"rooms/rTest/rTest.yy",},
     {"name":"get_string_cb","order":2,"path":"scripts/get_string_cb/get_string_cb.yy",},
     {"name":"http_get_cb","order":1,"path":"scripts/http_get_cb/http_get_cb.yy",},
     {"name":"PromiseAll","order":3,"path":"scripts/PromiseAll/PromiseAll.yy",},

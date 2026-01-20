@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"http_get_cb",
   "parent":{
-    "name":"async",
-    "path":"folders/Demo/async.yy",
+    "name":"Async",
+    "path":"folders/Demo/Async.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

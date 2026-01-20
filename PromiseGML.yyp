@@ -11,7 +11,7 @@
   "defaultScriptType":1,
   "Folders":[
     {"$GMFolder":"","%Name":"Demo","folderPath":"folders/Demo.yy","name":"Demo","resourceType":"GMFolder","resourceVersion":"2.0",},
-    {"$GMFolder":"","%Name":"async","folderPath":"folders/Demo/async.yy","name":"async","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Async","folderPath":"folders/Demo/Async.yy","name":"Async","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Promise","folderPath":"folders/Promise.yy","name":"Promise","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"(System)","folderPath":"folders/Promise/(System).yy","name":"(System)","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
@@ -24,8 +24,8 @@
   },
   "name":"PromiseGML",
   "resources":[
-    {"id":{"name":"obj_test","path":"objects/obj_test/obj_test.yy",},},
-    {"id":{"name":"rm_test","path":"rooms/rm_test/rm_test.yy",},},
+    {"id":{"name":"oTest","path":"objects/oTest/oTest.yy",},},
+    {"id":{"name":"rTest","path":"rooms/rTest/rTest.yy",},},
     {"id":{"name":"__PromiseSystem","path":"scripts/__PromiseSystem/__PromiseSystem.yy",},},
     {"id":{"name":"get_string_cb","path":"scripts/get_string_cb/get_string_cb.yy",},},
     {"id":{"name":"http_get_cb","path":"scripts/http_get_cb/http_get_cb.yy",},},
@@ -40,7 +40,7 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"rm_test","path":"rooms/rm_test/rm_test.yy",},},
+    {"roomId":{"name":"rTest","path":"rooms/rTest/rTest.yy",},},
   ],
   "templateType":null,
   "TextureGroups":[
