@@ -1,14 +1,14 @@
 // Feather disable all
 
-function PromiseRace(_arr)
+function PromiseRace(_array)
 {
     with({
-        __arr: _arr
+        __array: _array
     })
     {
         return new __PromiseConstructor(function(_resolve, _reject)
         {
-            if (not is_array(__arr))
+            if (not is_array(__array))
             {
                 try
                 {
@@ -21,9 +21,9 @@ function PromiseRace(_arr)
             }
             
             var _i = 0;
-            repeat(array_length(__arr))
+            repeat(array_length(__array))
             {
-                PromiseResolve(__arr[_i]).Then(_resolve, _reject);
+                PromiseResolve(__array[_i]).Then(_resolve, _reject);
                 ++_i;
             }
         });

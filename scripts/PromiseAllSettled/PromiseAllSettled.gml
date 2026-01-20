@@ -1,14 +1,14 @@
 // Feather disable all
 
-function PromiseAllSettled(_arr)
+function PromiseAllSettled(_array)
 {
     with({
-        __arr: _arr
+        __array: _array
     })
     {
         return new __PromiseConstructor(function(_resolve, _reject)
         {
-            if (not is_array(__arr))
+            if (not is_array(__array))
             {
                 try
                 {
@@ -20,11 +20,11 @@ function PromiseAllSettled(_arr)
                 }
             }
             
-            var _length = array_length(__arr);
+            var _length = array_length(__array);
             var _arguments = array_create(_length);
             if (_length == 0) return _resolve(_arguments);
             
-            array_copy(_arguments, 0, __arr, 0, _length);
+            array_copy(_arguments, 0, __array, 0, _length);
             var _remaining = [_length];
             
             var _i = 0;
