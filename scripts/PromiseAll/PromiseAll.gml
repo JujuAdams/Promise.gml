@@ -1,12 +1,15 @@
 // Feather disable all
 
+/// Requires all promises in the given array to resolve successfully. If any promise is rejected
+/// then this promise will also be rejected.
+
 function PromiseAll(_array)
 {
     with({
         __array: _array
     })
     {
-        return new __PromiseConstructor(function(_resolve, _reject)
+        return new __PromiseClass(function(_resolve, _reject)
         {
             if (not is_array(__array))
             {
@@ -14,9 +17,9 @@ function PromiseAll(_array)
                 {
                     show_error("All() accepts an array", 0);
                 }
-                catch(_e)
+                catch(_error)
                 {
-                    return _reject(_e);
+                    return _reject(_error);
                 }
             }
             
@@ -70,8 +73,8 @@ function __PromiseAllResult(_arguments, _index, _value, _resolve, _reject, _rema
             _resolve(_arguments);
         }
     }
-    catch(_e)
+    catch(_error)
     {
-        _reject(_e);
+        _reject(_error);
     }
 }

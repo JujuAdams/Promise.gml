@@ -6,7 +6,7 @@ function PromiseReject(_value)
         __value: _value
     })
     {
-        return new __PromiseConstructor(function(_resolve, _reject)
+        return new __PromiseClass(function(_resolve, _reject)
         {
             _reject(__value);
         });

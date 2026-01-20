@@ -6,7 +6,7 @@ function PromiseAllSettled(_array)
         __array: _array
     })
     {
-        return new __PromiseConstructor(function(_resolve, _reject)
+        return new __PromiseClass(function(_resolve, _reject)
         {
             if (not is_array(__array))
             {
@@ -14,9 +14,9 @@ function PromiseAllSettled(_array)
                 {
                     show_error("AllSettled() accepts an array", 0);
                 }
-                catch(_e)
+                catch(_error)
                 {
-                    return _reject(_e);
+                    return _reject(_error);
                 }
             }
             
@@ -86,8 +86,8 @@ function __PromiseAllSettledResult(_arguments, _index, _value, _resolve, _reject
             _resolve(_arguments);
         }
     }
-    catch(_e)
+    catch(_error)
     {
-        _reject(_e);
+        _reject(_error);
     }
 }

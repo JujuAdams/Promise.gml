@@ -2,7 +2,7 @@
 
 function PromiseResolve(_value)
 {
-    if (is_instanceof(_value, __PromiseConstructor))
+    if (is_instanceof(_value, __PromiseClass))
     {
         return _value;
     }
@@ -11,7 +11,7 @@ function PromiseResolve(_value)
         __value: _value
     })
     {
-        return new __PromiseConstructor(function(_resolve, _reject)
+        return new __PromiseClass(function(_resolve, _reject)
         {
             _resolve(__value);
         });

@@ -15,11 +15,11 @@ with(__PromiseSystem())
         
         if (_asyncStruct[$ "status"] == 0)
         {
-            __Resolve(_asyncStruct);
+            Resolve(_asyncStruct);
         }
         else
         {
-            __Reject(_asyncStruct);
+            Reject(_asyncStruct);
         }
     }
 }

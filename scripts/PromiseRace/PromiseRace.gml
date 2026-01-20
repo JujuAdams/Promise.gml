@@ -6,7 +6,7 @@ function PromiseRace(_array)
         __array: _array
     })
     {
-        return new __PromiseConstructor(function(_resolve, _reject)
+        return new __PromiseClass(function(_resolve, _reject)
         {
             if (not is_array(__array))
             {
@@ -14,9 +14,9 @@ function PromiseRace(_array)
                 {
                     show_error("Race() accepts an array", 0);
                 }
-                catch(_e)
+                catch(_error)
                 {
-                    return _reject(_e);
+                    return _reject(_error);
                 }
             }
             
