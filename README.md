@@ -1,3 +1,5 @@
+# This is a fork of [YellowAfterlife's work](https://github.com/YAL-GameMaker/Promise.gml)
+
 # Promise.gml
 An adaptation of JavaScript
 [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
