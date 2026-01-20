@@ -34,14 +34,14 @@ if (button("Chain"))
     );
 }
 
-if (button("afterAll()"))
+if (button("All()"))
 {
-    Promise.afterAll([
-        Promise.resolve(3),
+    Promise.All([
+        Promise.Resolve(3),
         42,
-        new Promise(function(resolve, reject)
+        new Promise(function(_resolve, _reject)
         {
-            setTimeout(resolve, 100, "foo");
+            setTimeout(_resolve, 100, "foo");
         })
     ]).Then(
         function(values)
@@ -51,14 +51,14 @@ if (button("afterAll()"))
     );
 }
 
-if (button("allSettled()"))
+if (button("AllSettled()"))
 {
-    Promise.allSettled([
-        Promise.resolve(3),
+    Promise.AllSettled([
+        Promise.Resolve(3),
         42,
-        new Promise(function(resolve, reject)
+        new Promise(function(_resolve, _reject)
         {
-            setTimeout(reject, 100, "drats");
+            setTimeout(_reject, 100, "drats");
         })
     ]).Then(function(values)
     {
@@ -66,19 +66,19 @@ if (button("allSettled()"))
     });
 }
 
-if (button("race()"))
+if (button("Race()"))
 {
-    Promise.race([
+    Promise.Race([
         new Promise(
-            function(resolve, reject)
+            function(_resolve, _reject)
             {
-                setTimeout(resolve, 500, "one");
+                setTimeout(_resolve, 500, "one");
             }
         ),
         new Promise(
-            function(resolve, reject)
+            function(_resolve, _reject)
             {
-                setTimeout(resolve, 100, "two");
+                setTimeout(_resolve, 100, "two");
             }
         ),
     ]).Then(

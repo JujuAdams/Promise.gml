@@ -2,11 +2,11 @@
 
 globalvar Promise; Promise = __PromiseSystem().__function;
 
-Promise.resolve    = __PromiseResolve;
-Promise.reject     = __PromiseReject;
-Promise.afterAll   = __PromiseAll;
-Promise.allSettled = __PromiseAllSettled;
-Promise.race       = __PromiseRace;
+Promise.Resolve    = __PromiseResolve;
+Promise.Reject     = __PromiseReject;
+Promise.All        = __PromiseAll;
+Promise.AllSettled = __PromiseAllSettled;
+Promise.Race       = __PromiseRace;
 
 function __PromiseConstructor(_handler) constructor
 {
