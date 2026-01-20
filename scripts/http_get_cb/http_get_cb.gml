@@ -14,7 +14,7 @@ function http_get_cb(_url, _func) {
 }
 
 function http_get_promise(_url) {
-    with ({
+    with({
         __url: _url,
         __Resolve: undefined,
         __Reject: undefined,

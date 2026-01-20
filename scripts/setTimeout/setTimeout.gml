@@ -1,7 +1,7 @@
 globalvar __setTimeout_list; __setTimeout_list = ds_priority_create();
 function __setTimeout_update() {
     var _p = __setTimeout_list;
-    while (!ds_priority_empty(_p)) {
+    while (not ds_priority_empty(_p)) {
         var _f = ds_priority_find_min(_p);
         if (ds_priority_find_priority(_p, _f) > get_timer()) break;
         ds_priority_delete_min(_p);
@@ -21,7 +21,7 @@ function setTimeout(_func, _time) {
             __self: method_get_self(_func),
             __args: _args
         }, function() {
-            with (__self) script_execute_ext(other.__index, other.__args);
+            with(__self) script_execute_ext(other.__index, other.__args);
         });
     }
     ds_priority_add(__setTimeout_list, _func, get_timer() + _time * 1000);

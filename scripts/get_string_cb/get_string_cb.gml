@@ -13,7 +13,7 @@ function get_string_cb(_message, _default, _func) {
 }
 
 function get_string_promise(_message, _default) {
-    with ({
+    with({
         __message: _message,
         __default: _default,
         __Resolve: undefined,
