@@ -12,8 +12,8 @@
   "Folders":[
     {"$GMFolder":"","%Name":"Demo","folderPath":"folders/Demo.yy","name":"Demo","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"async","folderPath":"folders/Demo/async.yy","name":"async","resourceType":"GMFolder","resourceVersion":"2.0",},
-    {"$GMFolder":"","%Name":"Promise.gml","folderPath":"folders/Promise.gml.yy","name":"Promise.gml","resourceType":"GMFolder","resourceVersion":"2.0",},
-    {"$GMFolder":"","%Name":"(System)","folderPath":"folders/Promise.gml/(System).yy","name":"(System)","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Promise","folderPath":"folders/Promise.yy","name":"Promise","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"(System)","folderPath":"folders/Promise/(System).yy","name":"(System)","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
   "ForcedPrefabProjectReferences":[],
   "IncludedFiles":[],

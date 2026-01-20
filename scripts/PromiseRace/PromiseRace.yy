@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"PromiseRace",
   "parent":{
-    "name":"Promise.gml",
-    "path":"folders/Promise.gml.yy",
+    "name":"Promise",
+    "path":"folders/Promise.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
