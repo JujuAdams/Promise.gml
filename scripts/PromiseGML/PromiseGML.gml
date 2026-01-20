@@ -10,9 +10,8 @@ Promise.race       = __PromiseRace;
 
 function __PromiseConstructor(_handler) constructor
 {
-    if (!is_method(_handler)) show_error("Not a function", true);
+    if (not is_method(_handler)) show_error("Not a function", true);
     
-    __isPromise = true;
     __handled = false;
     __state = 0;
     __value = undefined;
@@ -128,7 +127,7 @@ function __PromiseConstructor(_handler) constructor
             // https://github.com/promises-aplus/promises-spec#the-promise-resolution-procedure
             if (_newValue == self) show_error("A promise cannot be resolved with itself.", true);
             if (is_struct(_newValue) || is_method(_newValue)) {
-                if (_newValue[$"__isPromise"]) {
+                if (is_instanceof(_newValue, __PromiseConstructor)) {
                     self.__state = 3;
                     self.__value = _newValue;
                     self.__Finale();
