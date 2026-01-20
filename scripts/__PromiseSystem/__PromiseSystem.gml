@@ -20,20 +20,20 @@ function __PromiseSystem()
         
         time_source_start(time_source_create(time_source_global, 1, time_source_units_frames, function()
         {
-        	if (ds_list_empty(__soon)) return;
+            if (ds_list_empty(__soon)) return;
             
-        	static _copy = ds_list_create();
-        	ds_list_clear(_copy);
-        	
+            static _copy = ds_list_create();
+            ds_list_clear(_copy);
+            
             ds_list_copy(_copy, __soon);
-        	ds_list_clear(__soon);
+            ds_list_clear(__soon);
             
-        	var _len = ds_list_size(_copy);
-        	for (var _ind = 0; _ind < _len; _ind++)
+            var _len = ds_list_size(_copy);
+            for (var _ind = 0; _ind < _len; _ind++)
             {
-        		_copy[| _ind]();
-        	}
-        	
+                _copy[| _ind]();
+            }
+            
             ds_list_clear(_copy);
         },
         [], -1));
