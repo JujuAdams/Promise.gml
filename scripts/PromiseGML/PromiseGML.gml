@@ -1,15 +1,14 @@
 // Promise.gml
 // an adaptation of https://github.com/taylorhakes/promise-polyfill/
-function __Promise(_handler/*:function*/) constructor {
+function __Promise(_handler) constructor {
 	if (!is_method(_handler)) show_error("Not a function", true);
 	__isPromise = true;
-	__handled = false; /// @is {bool}
-	__state = 0; /// @is {number}
-	__value = undefined; /// @is {any}
-	__deferreds = []; /// @is {function[]}
+	__handled = false;
+	__state = 0;
+	__value = undefined;
+	__deferreds = [];
 	
-	/// @hint Promise:andThen(onFulfilled:function, ?onRejected:function)->Promise
-	static andThen = function(_onFulfilled, _onRejected)/*->Promise*/ {
+	static andThen = function(_onFulfilled, _onRejected) {
 		var _prom = new __Promise(function(_resolve, _reject){});
 		self.__handle({
 			onFulfilled: _onFulfilled,
@@ -19,12 +18,10 @@ function __Promise(_handler/*:function*/) constructor {
 		return _prom;
 	}
 	
-	/// @hint Promise:andCatch(onRejected:function)->Promise
-	static andCatch = function(_onRejected)/*->Promise*/ {
+	static andCatch = function(_onRejected) {
 		return andThen(undefined, _onRejected);
 	}
 	
-	/// @hint Promise:andFinally(callback:function)->Promise
 	static andFinally = function(_callback) {
 		with ({
 			__callback: _callback,
@@ -44,7 +41,6 @@ function __Promise(_handler/*:function*/) constructor {
 		}
 	};
 	
-	/// @hint Promise:toString()->string
 	static toString = function() {
 		return "Promise(state=" + string(__state)
 			+ ",value=" + string(__value)
@@ -161,16 +157,12 @@ function __Promise(_handler/*:function*/) constructor {
 		for (var _i = 0; _i < _len; _i++) {
 			self.__handle(self.__deferreds[_i]);
 		}
-		self.__deferreds = /*#cast*/ undefined;
+		self.__deferreds = undefined;
 	}
 	
 	self.__doResolve(_handler);
 }
 
-/// @hint new Promise(fn:function)
-globalvar Promise; Promise = __PromiseSystem().__function;
-
-/// @hint Promise.update()
 function __Promise_update() {
 	static _soon = __PromiseSystem().__soon;
 	if (ds_list_empty(_soon)) exit;
@@ -184,30 +176,25 @@ function __Promise_update() {
 	}
 	ds_list_clear(_copy);
 }
-Promise.update = __Promise_update;
 
-///@hint Promise.resolve(value:any)->Promise
-function Promise_resolve(_value/*:any*/)/*->Promise*/ {
+function Promise_resolve(_value) {
 	if (is_struct(_value) && _value[$"__isPromise"]) return _value;
 	with ({ __value: _value }) {
-		return /*#cast*/ new __Promise(function(_resolve, _reject) {
+		return new __Promise(function(_resolve, _reject) {
 			_resolve(__value);
 		});
 	}
 }
-Promise.resolve = Promise_resolve;
 
-///@hint Promise.reject(_value)->Promise
-function Promise_reject(_value)/*->Promise*/ {
+function Promise_reject(_value) {
 	with ({ __value: _value }) {
-		return /*#cast*/ new __Promise(function(_resolve, _reject) {
+		return new __Promise(function(_resolve, _reject) {
 			_reject(__value);
 		});
 	}
 }
-Promise.reject = Promise_reject;
 
-function __Promise_all_res(_args/*:array*/, _ind/*:int*/, _val/*:any*/, _resolve/*:function*/, _reject/*:function*/, _remaining/*:int[]*/) {
+function __Promise_all_res(_args, _ind, _val, _resolve, _reject, _remaining) {
 	try {
 		if (is_struct(_val) && is_method(_val[$"andThen"])) {
 			with ({
@@ -230,8 +217,7 @@ function __Promise_all_res(_args/*:array*/, _ind/*:int*/, _val/*:any*/, _resolve
 	}
 }
 
-///@hint Promise.afterAll(_arr:array<any>)
-function Promise_all(_arr/*:array<any>*/) {
+function Promise_all(_arr) {
 	with ({__arr: _arr}) return new __Promise(function(_resolve, _reject) {
 		if (!is_array(__arr)) {
 			try {
@@ -250,9 +236,8 @@ function Promise_all(_arr/*:array<any>*/) {
 		}
 	});
 }
-Promise.afterAll = Promise_all;
 
-function __Promise_allSettled_res(_args/*:array*/, _ind/*:int*/, _val/*:any*/, _resolve/*:function*/, _reject/*:function*/, _remaining/*:int[]*/) {
+function __Promise_allSettled_res(_args, _ind, _val, _resolve, _reject, _remaining) {
 	try {
 		if (is_struct(_val) && is_method(_val[$"andThen"])) {
 			with ({
@@ -276,8 +261,7 @@ function __Promise_allSettled_res(_args/*:array*/, _ind/*:int*/, _val/*:any*/, _
 	}
 }
 
-///@hint Promise.allSettled(_arr:array<any>)
-function Promise_allSettled(_arr/*:array<any>*/) {
+function Promise_allSettled(_arr) {
 	with ({__arr: _arr}) return new __Promise(function(_resolve, _reject) {
 		if (!is_array(__arr)) {
 			try {
@@ -296,10 +280,8 @@ function Promise_allSettled(_arr/*:array<any>*/) {
 		}
 	});
 }
-Promise.allSettled = Promise_allSettled;
 
-///@hint Promise.race(_arr:array)
-function Promise_race(_arr/*:array*/) {
+function Promise_race(_arr) {
 	with ({__arr: _arr}) return new __Promise(function(_resolve, _reject) {
 		if (!is_array(__arr)) {
 			try {
@@ -312,4 +294,3 @@ function Promise_race(_arr/*:array*/) {
 		}
 	});
 }
-Promise.race = Promise_race;

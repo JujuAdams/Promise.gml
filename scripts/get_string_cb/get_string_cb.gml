@@ -1,4 +1,4 @@
-globalvar __get_string_cb_map; __get_string_cb_map = ds_map_create(); /// @is {ds_map<int, function>}
+globalvar __get_string_cb_map; __get_string_cb_map = ds_map_create();
 function __get_string_cb_async() {
 	var _id = async_load[?"id"];
 	var _func = __get_string_cb_map[?_id];
@@ -7,12 +7,12 @@ function __get_string_cb_async() {
 	_func(json_parse(json_encode(async_load)));
 }
 
-function get_string_cb(_message/*:string*/, _default/*:string*/, _func/*:function*/) {
+function get_string_cb(_message, _default, _func) {
 	var _ind = get_string_async(_message, _default);
 	if (_ind >= 0) __get_string_cb_map[?_ind] = _func;
 }
 
-function get_string_promise(_message/*:string*/, _default/*:string*/)/*->Promise*/ {
+function get_string_promise(_message, _default) {
 	with ({
 		__message: _message,
 		__default: _default,

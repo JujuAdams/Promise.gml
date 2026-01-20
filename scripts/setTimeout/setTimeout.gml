@@ -1,4 +1,4 @@
-globalvar __setTimeout_list; __setTimeout_list = ds_priority_create(); /// @is {ds_priority<function>}
+globalvar __setTimeout_list; __setTimeout_list = ds_priority_create();
 function __setTimeout_update() {
 	var _p = __setTimeout_list;
 	while (!ds_priority_empty(_p)) {

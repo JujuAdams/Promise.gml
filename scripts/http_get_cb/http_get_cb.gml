@@ -1,4 +1,4 @@
-globalvar __http_get_cb_map; __http_get_cb_map = ds_map_create(); /// @is {ds_map<int, function>}
+globalvar __http_get_cb_map; __http_get_cb_map = ds_map_create();
 function __http_get_cb_async() {
 	var _status = async_load[?"status"];
 	if (_status > 0) exit;
@@ -8,12 +8,12 @@ function __http_get_cb_async() {
 	ds_map_delete(__http_get_cb_map, _id);
 	_func(json_parse(json_encode(async_load)));
 }
-function http_get_cb(_url/*:string*/, _func/*:function*/) {
+function http_get_cb(_url, _func) {
 	var _ind = http_get(_url);
 	if (_ind >= 0) __http_get_cb_map[?_ind] = _func;
 }
 
-function http_get_promise(_url/*:string*/)/*->Promise*/ {
+function http_get_promise(_url) {
 	with ({
 		__url: _url,
 		__resolve: undefined,

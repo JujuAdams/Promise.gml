@@ -1,5 +1,13 @@
 // Feather disable all
 
+globalvar Promise; Promise = __PromiseSystem().__function;
+Promise.update = __Promise_update;
+Promise.resolve = Promise_resolve;
+Promise.reject = Promise_reject;
+Promise.afterAll = Promise_all;
+Promise.allSettled = Promise_allSettled;
+Promise.race = Promise_race;
+
 function __PromiseSystem()
 {
     static _system = undefined;
