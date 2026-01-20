@@ -200,12 +200,12 @@ function __PromiseConstructor(_handler) constructor
     
     static __Finale = function()
     {
-        static _soon = __PromiseSystem().__soonArray;
+        static _soonArray = __PromiseSystem().__soonArray;
         
         var _len = array_length(self.__deferreds);
         if ((self.__state == 2) && (_len == 0))
         {
-            ds_list_add(_soon, function()
+            array_push(_soonArray, function()
             {
                 if (not self.__handled)
                 {

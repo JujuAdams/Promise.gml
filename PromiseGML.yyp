@@ -36,7 +36,6 @@
     {"id":{"name":"PromiseReject","path":"scripts/PromiseReject/PromiseReject.yy",},},
     {"id":{"name":"PromiseResolve","path":"scripts/PromiseResolve/PromiseResolve.yy",},},
     {"id":{"name":"setTimeout","path":"scripts/setTimeout/setTimeout.yy",},},
-    {"id":{"name":"trace","path":"scripts/trace/trace.yy",},},
   ],
   "resourceType":"GMProject",
   "resourceVersion":"2.0",

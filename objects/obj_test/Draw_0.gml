@@ -18,18 +18,18 @@ if (button("Chain"))
             1000, done, fail);
         }
     ).Then(
-        function(_val)
+        function(_value)
         {
-            trace("resolved!", _val);
+            show_debug_message($"resolved! {_value}");
         },
-        function(_val)
+        function(_value)
         {
-            trace("failed!", _val);
+            show_debug_message($"failed! {_value}");
         }
     ).Finally(
         function()
         {
-            trace("finally!");
+            show_debug_message("finally!");
         }
     );
 }
@@ -44,9 +44,9 @@ if (button("All()"))
             setTimeout(_resolve, 100, "foo");
         })
     ]).Then(
-        function(values)
+        function(_values)
         {
-            trace(values);
+            show_debug_message(_values);
         }
     );
 }
@@ -61,9 +61,9 @@ if (button("AllSettled()"))
             setTimeout(_reject, 100, "drats");
         })
     ]).Then(
-        function(values)
+        function(_values)
         {
-            trace(values);
+            show_debug_message(_values);
         }
     );
 }
@@ -84,9 +84,9 @@ if (button("Race()"))
             }
         ),
     ]).Then(
-        function(val)
+        function(_value)
         {
-            trace(val);
+            show_debug_message(_value);
         }
     );
 }
@@ -94,20 +94,20 @@ if (button("Race()"))
 if (button("HTTP requests"))
 {
     http_get_promise("https://yal.cc/ping").Then(
-        function(v)
+        function(_value)
         {
-            trace("success", v);
+            show_debug_message($"success {_value}");
             return http_get_promise("https://yal.cc/ping");
         }
     ).Then(
-        function(v)
+        function(_value)
         {
-            trace("success2", v);
+            show_debug_message($"success2 {_value}");
         }
     ).Catch(
-        function(e)
+        function(_value)
         {
-            trace("failed", e);
+            show_debug_message($"failed {_value}");
         }
     );
 }
