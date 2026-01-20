@@ -15,7 +15,6 @@ function __PromiseSystem()
     {
         show_debug_message("Welcome to Promise.gml by Juju Adams! Promise.gml is built on top of work by YellowAfterlife and Taylor Hakes");
         
-        __function = method({}, __PromiseConstructor);
         __soon = ds_list_create();
         
         time_source_start(time_source_create(time_source_global, 1, time_source_units_frames, function()

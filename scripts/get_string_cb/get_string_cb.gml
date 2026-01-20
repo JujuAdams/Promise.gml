@@ -18,7 +18,7 @@ function get_string_promise(_message, _default) {
         __default: _default,
         __Resolve: undefined,
         __Reject: undefined,
-    }) return new Promise(function(_resolve, _reject) {
+    }) return Promise(function(_resolve, _reject) {
         __Resolve = _resolve;
         __Reject = _reject;
         get_string_cb(__message, __default, function(_obj) {

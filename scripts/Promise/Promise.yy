@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"__PromiseSystem",
+  "%Name":"Promise",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"__PromiseSystem",
+  "name":"Promise",
   "parent":{
-    "name":"(System)",
-    "path":"folders/Promise.gml/(System).yy",
+    "name":"Promise.gml",
+    "path":"folders/Promise.gml.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

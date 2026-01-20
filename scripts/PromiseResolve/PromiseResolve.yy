@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"__PromiseSupport",
+  "%Name":"PromiseResolve",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"__PromiseSupport",
+  "name":"PromiseResolve",
   "parent":{
     "name":"Promise.gml",
     "path":"folders/Promise.gml.yy",

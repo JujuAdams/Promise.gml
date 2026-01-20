@@ -1,12 +1,9 @@
 // Feather disable all
 
-globalvar Promise; Promise = __PromiseSystem().__function;
-
-Promise.Resolve    = __PromiseResolve;
-Promise.Reject     = __PromiseReject;
-Promise.All        = __PromiseAll;
-Promise.AllSettled = __PromiseAllSettled;
-Promise.Race       = __PromiseRace;
+function Promise(_handler)
+{
+    return new __PromiseConstructor(_handler);
+}
 
 function __PromiseConstructor(_handler) constructor
 {
@@ -44,7 +41,7 @@ function __PromiseConstructor(_handler) constructor
             {
                 __value = _value;
                 
-                return __PromiseResolve(__callback()).Then(function()
+                return PromiseResolve(__callback()).Then(function()
                 {
                     return __value;
                 })
@@ -53,9 +50,9 @@ function __PromiseConstructor(_handler) constructor
             {
                 __value = _reason;
                 
-                return __PromiseResolve(__callback()).Then(function()
+                return PromiseResolve(__callback()).Then(function()
                 {
-                    return __PromiseReject(__value);
+                    return PromiseReject(__value);
                 })
             })
         }
@@ -175,7 +172,7 @@ function __PromiseConstructor(_handler) constructor
                     return;
                 }
                 
-                var _then = _newValue[$"Then"];
+                var _then = _newValue[$ "Then"];
                 if (is_method(_then))
                 {
                     self.__DoResolve(method(_newValue, _then));
@@ -210,7 +207,7 @@ function __PromiseConstructor(_handler) constructor
             {
                 if (not self.__handled)
                 {
-                    show_debug_message($"Possible Unhandled Promise Rejection: {__value}");
+                    show_debug_message($"Unhandled promise rejection: {__value}");
                 }
             });
         }

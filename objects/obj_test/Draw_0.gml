@@ -8,7 +8,7 @@ var button = function(name)
 
 if (button("Chain"))
 {
-    (new Promise(
+    Promise(
         function(done, fail)
         {
             setTimeout(function(_done, _fail)
@@ -17,7 +17,7 @@ if (button("Chain"))
             },
             1000, done, fail);
         }
-    )).Then(
+    ).Then(
         function(_val)
         {
             trace("resolved!", _val);
@@ -36,10 +36,10 @@ if (button("Chain"))
 
 if (button("All()"))
 {
-    Promise.All([
-        Promise.Resolve(3),
+    PromiseAll([
+        PromiseResolve(3),
         42,
-        new Promise(function(_resolve, _reject)
+        Promise(function(_resolve, _reject)
         {
             setTimeout(_resolve, 100, "foo");
         })
@@ -53,10 +53,10 @@ if (button("All()"))
 
 if (button("AllSettled()"))
 {
-    Promise.AllSettled([
-        Promise.Resolve(3),
+    PromiseAllSettled([
+        PromiseResolve(3),
         42,
-        new Promise(function(_resolve, _reject)
+        Promise(function(_resolve, _reject)
         {
             setTimeout(_reject, 100, "drats");
         })
@@ -68,14 +68,14 @@ if (button("AllSettled()"))
 
 if (button("Race()"))
 {
-    Promise.Race([
-        new Promise(
+    PromiseRace([
+        Promise(
             function(_resolve, _reject)
             {
                 setTimeout(_resolve, 500, "one");
             }
         ),
-        new Promise(
+        Promise(
             function(_resolve, _reject)
             {
                 setTimeout(_resolve, 100, "two");

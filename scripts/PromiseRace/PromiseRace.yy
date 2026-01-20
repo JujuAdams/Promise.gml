@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"PromiseGML",
+  "%Name":"PromiseRace",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"PromiseGML",
+  "name":"PromiseRace",
   "parent":{
     "name":"Promise.gml",
     "path":"folders/Promise.gml.yy",

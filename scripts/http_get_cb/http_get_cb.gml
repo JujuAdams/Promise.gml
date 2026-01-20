@@ -18,7 +18,7 @@ function http_get_promise(_url) {
         __url: _url,
         __Resolve: undefined,
         __Reject: undefined,
-    }) return new Promise(function(_resolve, _reject) {
+    }) return Promise(function(_resolve, _reject) {
         __Resolve = _resolve;
         __Reject = _reject;
         http_get_cb(__url, function(_obj) {

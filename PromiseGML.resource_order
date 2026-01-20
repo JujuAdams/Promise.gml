@@ -1,11 +1,16 @@
 {
-  "FolderOrderSettings":[],
+  "FolderOrderSettings":[
+    {"name":"(System)","order":6,"path":"folders/Promise.gml/(System).yy",},
+  ],
   "ResourceOrderSettings":[
     {"name":"rm_test","order":1,"path":"rooms/rm_test/rm_test.yy",},
-    {"name":"__PromiseSupport","order":3,"path":"scripts/__PromiseSupport/__PromiseSupport.yy",},
-    {"name":"__PromiseSystem","order":2,"path":"scripts/__PromiseSystem/__PromiseSystem.yy",},
     {"name":"get_string_cb","order":2,"path":"scripts/get_string_cb/get_string_cb.yy",},
     {"name":"http_get_cb","order":1,"path":"scripts/http_get_cb/http_get_cb.yy",},
+    {"name":"PromiseAll","order":3,"path":"scripts/PromiseAll/PromiseAll.yy",},
+    {"name":"PromiseAllSettled","order":4,"path":"scripts/PromiseAllSettled/PromiseAllSettled.yy",},
+    {"name":"PromiseRace","order":5,"path":"scripts/PromiseRace/PromiseRace.yy",},
+    {"name":"PromiseReject","order":2,"path":"scripts/PromiseReject/PromiseReject.yy",},
+    {"name":"PromiseResolve","order":1,"path":"scripts/PromiseResolve/PromiseResolve.yy",},
     {"name":"trace","order":4,"path":"scripts/trace/trace.yy",},
   ],
 }
