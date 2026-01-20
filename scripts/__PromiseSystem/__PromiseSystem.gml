@@ -22,7 +22,7 @@ function __PromiseSystem()
     _system = {};
     with(_system)
     {
-        show_debug_message("Welcome to Promise.gml by YellowAfterlife with edits by Juju Adams! Promise.gml is built on top of work by Taylor Hakes. This is version 1.0.0, 2026-01-20");
+        show_debug_message("Welcome to Promise.gml by YellowAfterlife with edits by Juju Adams! Promise.gml is built on top of work by Taylor Hakes. This is version 1.1.0, 2026-01-20");
         
         __soonArray = [];
         
