@@ -8,9 +8,9 @@ function __Promise(_handler) constructor {
 	__value = undefined;
 	__deferreds = [];
 	
-	static andThen = function(_onFulfilled, _onRejected) {
+	static Then = function(_onFulfilled, _onRejected) {
 		var _prom = new __Promise(function(_resolve, _reject){});
-		self.__handle({
+		self.__Handle({
 			onFulfilled: _onFulfilled,
 			onRejected: _onRejected,
 			promise: _prom,
@@ -18,24 +18,24 @@ function __Promise(_handler) constructor {
 		return _prom;
 	}
 	
-	static andCatch = function(_onRejected) {
-		return andThen(undefined, _onRejected);
+	static Catch = function(_onRejected) {
+		return Then(undefined, _onRejected);
 	}
 	
-	static andFinally = function(_callback) {
+	static Finally = function(_callback) {
 		with ({
 			__callback: _callback,
 			__value: undefined,
 		}) {
-			return other.andThen(function(_value) {
+			return other.Then(function(_value) {
 				__value = _value;
-				return Promise_resolve(__callback()).andThen(function() {
+				return __PromiseResolve(__callback()).Then(function() {
 					return __value;
 				})
 			}, function(_reason) {
 				__value = _reason;
-				return Promise_resolve(__callback()).andThen(function() {
-					return Promise_reject(__value);
+				return __PromiseResolve(__callback()).Then(function() {
+					return __PromiseReject(__value);
 				})
 			})
 		}
@@ -48,7 +48,7 @@ function __Promise(_handler) constructor {
 			+ ")";
 	}
 	
-	static __doResolve = function(_func) {
+	static __DoResolve = function(_func) {
 		var _self = self;
 		with ({
 			__done: false,
@@ -58,21 +58,21 @@ function __Promise(_handler) constructor {
 				_func(function(_value) {
 					if (__done) return;
 					__done = true;
-					__self.__resolve(_value);
+					__self.__Resolve(_value);
 				}, function(_reason) {
 					if (__done) return;
 					__done = true;
-					__self.__reject(_reason);
+					__self.__Reject(_reason);
 				});
 			} catch (_err) {
 				if (__done) return;
 				__done = true;
-				_self.__reject(_err);
+				_self.__Reject(_err);
 			}
 		}
 	}
 	
-	static __handle = function(_deferred) {
+	static __Handle = function(_deferred) {
         static _staticSoon = __PromiseSystem().__soon;
         var _soon = _staticSoon;
         
@@ -93,9 +93,9 @@ function __Promise(_handler) constructor {
 					var _cb = __state == 1 ? _deff.onFulfilled : _deff.onRejected;
 					if (_cb == undefined) {
 						if (__state == 1) {
-							_deff.promise.__resolve(__value);
+							_deff.promise.__Resolve(__value);
 						} else {
-							_deff.promise.__reject(__value);
+							_deff.promise.__Reject(__value);
 						}
 						return;
 					}
@@ -103,16 +103,16 @@ function __Promise(_handler) constructor {
 					try {
 						_ret = _cb(__value);
 					} catch (_err) {
-						_deff.promise.__reject(_err);
+						_deff.promise.__Reject(_err);
 						return;
 					}
-					_deff.promise.__resolve(_ret);
+					_deff.promise.__Resolve(_ret);
 				}
 			});
 		}
 	}
 	
-	static __resolve = function(_newValue) {
+	static __Resolve = function(_newValue) {
 		try {
 			// Promise Resolution Procedure:
 			// https://github.com/promises-aplus/promises-spec#the-promise-resolution-procedure
@@ -121,30 +121,30 @@ function __Promise(_handler) constructor {
 				if (_newValue[$"__isPromise"]) {
 					self.__state = 3;
 					self.__value = _newValue;
-					self.__finale();
+					self.__Finale();
 					return;
 				}
-				var _then = _newValue[$"andThen"];
+				var _then = _newValue[$"Then"];
 				if (is_method(_then)) {
-					self.__doResolve(method(_newValue, _then));
+					self.__DoResolve(method(_newValue, _then));
 					return;
 				}
 			}
 			self.__state = 1;
 			self.__value = _newValue;
-			self.__finale();
+			self.__Finale();
 		} catch (_e) {
-			self.__reject(_newValue);
+			self.__Reject(_newValue);
 		}
 	}
 	
-	static __reject = function(_newValue) {
+	static __Reject = function(_newValue) {
 		self.__state = 2;
 		self.__value = _newValue;
-		self.__finale();
+		self.__Finale();
 	}
 	
-	static __finale = function() {
+	static __Finale = function() {
         static _soon = __PromiseSystem().__soon;
 		var _len = array_length(self.__deferreds);
 		if (self.__state == 2 && _len == 0) {
@@ -155,142 +155,10 @@ function __Promise(_handler) constructor {
 			});
 		}
 		for (var _i = 0; _i < _len; _i++) {
-			self.__handle(self.__deferreds[_i]);
+			self.__Handle(self.__deferreds[_i]);
 		}
 		self.__deferreds = undefined;
 	}
 	
-	self.__doResolve(_handler);
-}
-
-function __Promise_update() {
-	static _soon = __PromiseSystem().__soon;
-	if (ds_list_empty(_soon)) exit;
-	static _copy = ds_list_create();
-	ds_list_clear(_copy);
-	ds_list_copy(_copy, _soon);
-	ds_list_clear(_soon);
-	var _len = ds_list_size(_copy);
-	for (var _ind = 0; _ind < _len; _ind++) {
-		_copy[|_ind]();
-	}
-	ds_list_clear(_copy);
-}
-
-function Promise_resolve(_value) {
-	if (is_struct(_value) && _value[$"__isPromise"]) return _value;
-	with ({ __value: _value }) {
-		return new __Promise(function(_resolve, _reject) {
-			_resolve(__value);
-		});
-	}
-}
-
-function Promise_reject(_value) {
-	with ({ __value: _value }) {
-		return new __Promise(function(_resolve, _reject) {
-			_reject(__value);
-		});
-	}
-}
-
-function __Promise_all_res(_args, _ind, _val, _resolve, _reject, _remaining) {
-	try {
-		if (is_struct(_val) && is_method(_val[$"andThen"])) {
-			with ({
-				__ind: _ind,
-				__args: _args,
-				__resolve: _resolve,
-				__reject: _reject,
-				__remaining: _remaining,
-			}) _val.andThen(function(_val) {
-				__Promise_all_res(__args, __ind, _val, __resolve, __reject, __remaining);
-			}, _reject);
-			return;
-		}
-		_args[@_ind] = _val;
-		if (--_remaining[@0] <= 0) {
-			_resolve(_args);
-		}
-	} catch (_e) {
-		_reject(_e);
-	}
-}
-
-function Promise_all(_arr) {
-	with ({__arr: _arr}) return new __Promise(function(_resolve, _reject) {
-		if (!is_array(__arr)) {
-			try {
-				show_error("Promise.all accepts an array", 0);
-			} catch (_e) return _reject(_e);
-		}
-		
-		var _len = array_length(__arr);
-		var _args = array_create(_len);
-		if (_len == 0) return _resolve(_args);
-		array_copy(_args, 0, __arr, 0, _len);
-		
-		var _remaining = [_len];
-		for (var _ind = 0; _ind < _len; _ind++) {
-			__Promise_all_res(_args, _ind, _args[_ind], _resolve, _reject, _remaining);
-		}
-	});
-}
-
-function __Promise_allSettled_res(_args, _ind, _val, _resolve, _reject, _remaining) {
-	try {
-		if (is_struct(_val) && is_method(_val[$"andThen"])) {
-			with ({
-				__ind: _ind,
-				__args: _args,
-				__resolve: _resolve,
-				__reject: _reject,
-				__remaining: _remaining,
-			}) _val.andThen(function(_val) {
-				__Promise_allSettled_res(__args, __ind, _val, __resolve, __reject, __remaining);
-			}, function(_err) {
-				__args[@__ind] = { success: false, status: "rejected", reason: _err };
-				if (--__remaining[@0] == 0) __resolve(__args);
-			});
-			return;
-		}
-		_args[@_ind] = { success: true, status: "fulfilled", value: _val };;
-		if (--_remaining[@0] == 0) _resolve(_args);
-	} catch (_e) {
-		_reject(_e);
-	}
-}
-
-function Promise_allSettled(_arr) {
-	with ({__arr: _arr}) return new __Promise(function(_resolve, _reject) {
-		if (!is_array(__arr)) {
-			try {
-				show_error("Promise.allSettled accepts an array", 0);
-			} catch (_e) return _reject(_e);
-		}
-		
-		var _len = array_length(__arr);
-		var _args = array_create(_len);
-		if (_len == 0) return _resolve(_args);
-		array_copy(_args, 0, __arr, 0, _len);
-		
-		var _remaining = [_len];
-		for (var _ind = 0; _ind < _len; _ind++) {
-			__Promise_allSettled_res(_args, _ind, _args[_ind], _resolve, _reject, _remaining);
-		}
-	});
-}
-
-function Promise_race(_arr) {
-	with ({__arr: _arr}) return new __Promise(function(_resolve, _reject) {
-		if (!is_array(__arr)) {
-			try {
-				show_error("Promise.race accepts an array", 0);
-			} catch (_e) return _reject(_e);
-		}
-		var _len = array_length(__arr);
-		for (var _ind = 0; _ind < _len; _ind++) {
-			Promise_resolve(__arr[_ind]).andThen(_resolve, _reject);
-		}
-	});
+	self.__DoResolve(_handler);
 }

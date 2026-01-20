@@ -16,16 +16,16 @@ function http_get_cb(_url, _func) {
 function http_get_promise(_url) {
 	with ({
 		__url: _url,
-		__resolve: undefined,
-		__reject: undefined,
+		__Resolve: undefined,
+		__Reject: undefined,
 	}) return new Promise(function(_resolve, _reject) {
-		__resolve = _resolve;
-		__reject = _reject;
+		__Resolve = _resolve;
+		__Reject = _reject;
 		http_get_cb(__url, function(_obj) {
 			if (_obj.status == 0) {
-				__resolve(_obj.result);
+				__Resolve(_obj.result);
 			} else {
-				__reject("HTTP " + string(_obj.http_status));
+				__Reject("HTTP " + string(_obj.http_status));
 			}
 		})
 	});

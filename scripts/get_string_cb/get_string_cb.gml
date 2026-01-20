@@ -16,16 +16,16 @@ function get_string_promise(_message, _default) {
 	with ({
 		__message: _message,
 		__default: _default,
-		__resolve: undefined,
-		__reject: undefined,
+		__Resolve: undefined,
+		__Reject: undefined,
 	}) return new Promise(function(_resolve, _reject) {
-		__resolve = _resolve;
-		__reject = _reject;
+		__Resolve = _resolve;
+		__Reject = _reject;
 		get_string_cb(__message, __default, function(_obj) {
 			if (_obj.status) {
-				__resolve(_obj.result);
+				__Resolve(_obj.result);
 			} else {
-				__reject(undefined);
+				__Reject(undefined);
 			}
 		})
 	});

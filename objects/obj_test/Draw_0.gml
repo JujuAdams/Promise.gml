@@ -11,11 +11,11 @@ if (button("Chain")) {
 		setTimeout(function(_done, _fail) {
 			if (0) _done("hello!"); else _fail("bye!");
 		}, 250, done, fail);
-	})).andThen(function(_val) {
+	})).Then(function(_val) {
 		trace("resolved!", _val);
 	}, function(_val) {
 		trace("failed!", _val);
-	}).andFinally(function() {
+	}).Finally(function() {
 		trace("done!");
 	});
 }
@@ -26,7 +26,7 @@ if (button("afterAll()")) {
 		new Promise(function(resolve, reject) {
 			setTimeout(resolve, 100, "foo");
 		})
-	]).andThen(function(values) {
+	]).Then(function(values) {
 		trace(values);
 	});
 }
@@ -37,7 +37,7 @@ if (button("allSettled()")) {
 		new Promise(function(resolve, reject) {
 			setTimeout(reject, 100, "drats");
 		})
-	]).andThen(function(values) {
+	]).Then(function(values) {
 		trace(values);
 	});
 }
@@ -49,32 +49,32 @@ if (button("race()")) {
 		new Promise(function(resolve, reject) {
 			setTimeout(resolve, 100, "two");
 		}),
-	]).andThen(function(val) {
+	]).Then(function(val) {
 		trace(val);
 	});
 }
 if (button("HTTP requests")) {
-	http_get_promise("https://yal.cc/ping").andThen(function(v) {
+	http_get_promise("https://yal.cc/ping").Then(function(v) {
 		trace("success", v);
 		return http_get_promise("https://yal.cc/ping");
-	}).andThen(function(v) {
+	}).Then(function(v) {
 		trace("success2", v);
-	}).andCatch(function(e) {
+	}).Catch(function(e) {
 		trace("failed", e);
 	})
 }
 if (button("messages")) {
 	with ({ ip: "", port: "", alias: "" })
-	get_string_promise("IP?", "127.0.0.1").andThen(function(_ip) {
+	get_string_promise("IP?", "127.0.0.1").Then(function(_ip) {
 		ip = _ip;
 		return get_string_promise("Port?", "5394");
-	}).andThen(function(_port) {
+	}).Then(function(_port) {
 		port = _port;
 		return get_string_promise("Alias?", "Me");
-	}).andThen(function(_alias) {
+	}).Then(function(_alias) {
 		alias = _alias;
 		show_debug_message([ip, port, alias]);
-	}).andCatch(function(e) {
+	}).Catch(function(e) {
 		show_debug_message("Cancelled!");
 	});
 }

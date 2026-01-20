@@ -1,12 +1,13 @@
 // Feather disable all
 
 globalvar Promise; Promise = __PromiseSystem().__function;
-Promise.update = __Promise_update;
-Promise.resolve = Promise_resolve;
-Promise.reject = Promise_reject;
-Promise.afterAll = Promise_all;
-Promise.allSettled = Promise_allSettled;
-Promise.race = Promise_race;
+Promise.resolve    = __PromiseResolve;
+Promise.reject     = __PromiseReject;
+Promise.afterAll   = __PromiseAll;
+Promise.allSettled = __PromiseAllSettled;
+Promise.race       = __PromiseRace;
+
+__PromiseSystem();
 
 function __PromiseSystem()
 {
@@ -18,6 +19,21 @@ function __PromiseSystem()
     {
         __function = method({}, __Promise);
         __soon = ds_list_create();
+        
+        time_source_start(time_source_create(time_source_global, 1, time_source_units_frames, function()
+        {
+        	if (ds_list_empty(__soon)) exit;
+        	static _copy = ds_list_create();
+        	ds_list_clear(_copy);
+        	ds_list_copy(_copy, __soon);
+        	ds_list_clear(__soon);
+        	var _len = ds_list_size(_copy);
+        	for (var _ind = 0; _ind < _len; _ind++) {
+        		_copy[|_ind]();
+        	}
+        	ds_list_clear(_copy);
+        },
+        [], -1));
     }
     
     return _system;
