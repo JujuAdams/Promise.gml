@@ -8,7 +8,7 @@ function Promise_http_get(_url)
     
     __PromiseEnsureInstance();
     
-    var _promise = PromiseFree();
+    var _promise = PromiseCustom();
     
     var _index = http_get(_url);
     if (_index >= 0)

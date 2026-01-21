@@ -9,7 +9,7 @@ function Promise_http_get_file(_url, _filename)
     
     __PromiseEnsureInstance();
     
-    var _promise = PromiseFree();
+    var _promise = PromiseCustom();
     
     var _index = http_get_file(_url, _filename);
     if (_index >= 0)

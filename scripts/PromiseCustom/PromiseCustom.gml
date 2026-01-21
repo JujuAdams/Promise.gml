@@ -13,14 +13,7 @@
 /// N.B. You will only be able to call either of these functions once and the functions are
 ///      mutually exclusive.
 
-function PromiseFree()
+function PromiseCustom()
 {
-    //TODO - Use constructor inheritance here
-    
-    with(new __PromiseClass())
-    {
-        Resolve = __Resolve;
-        Reject  = __Reject;
-        return self;
-    }
+    return new __PromiseClassCustom();
 }

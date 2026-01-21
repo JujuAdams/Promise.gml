@@ -11,7 +11,7 @@ function Promise_http_request(_url, _method, _headerMap, _body)
     
     __PromiseEnsureInstance();
     
-    var _promise = PromiseFree();
+    var _promise = PromiseCustom();
     
     var _cleanUp = false;
     if (_headerMap == undefined)

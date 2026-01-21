@@ -4,8 +4,6 @@
 
 function __PromiseClass(_handler) constructor
 {
-    _handler ??= function(_resolve, _reject) {}
-    
     __state         = __PROMISE_STATE_PENDING;
     __value         = undefined;
     __handled       = false;
@@ -67,6 +65,11 @@ function __PromiseClass(_handler) constructor
     
     static __ExecuteHandler = function(_function)
     {
+        if (not is_callable(_function))
+        {
+            return;
+        }
+        
         //Calls a function with two arguments: the "resolve" and "reject" callbacks. When the
         //function executes one of the callbacks, the scoped promise will then resolve/reject using
         //the returned value as appropriate.
