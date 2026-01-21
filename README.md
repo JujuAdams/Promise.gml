@@ -50,7 +50,7 @@ Can also be found in the sample project, along with supporting scripts.
 
 ### Basic
 
-Featuring a custom [`call_later_ext()`](https://github.com/JujuAdams/Promise.gml/blob/master/scripts/call_later_ext/call_later_ext.gml)).
+Featuring a custom [`call_later_ext()`](https://github.com/JujuAdams/Promise.gml/blob/master/scripts/call_later_ext/call_later_ext.gml).
 
 ```gml
 Promise(
