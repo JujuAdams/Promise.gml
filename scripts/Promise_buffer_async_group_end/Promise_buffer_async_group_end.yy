@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"Promise_http_request",
+  "%Name":"Promise_buffer_async_group_end",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"Promise_http_request",
+  "name":"Promise_buffer_async_group_end",
   "parent":{
     "name":"Wrappers",
     "path":"folders/Promise.gml/Wrappers.yy",

@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"Promise_http_get",
   "parent":{
-    "name":"HTTP",
-    "path":"folders/Promise.gml/HTTP.yy",
+    "name":"Wrappers",
+    "path":"folders/Promise.gml/Wrappers.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

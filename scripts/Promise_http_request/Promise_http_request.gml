@@ -8,7 +8,6 @@
 function Promise_http_request(_url, _method, _headerMap, _body)
 {
     static _callbackDict = __PromiseSystem().__callbackDict;
-    
     __PromiseEnsureInstance();
     
     var _promise = PromiseCustom();
@@ -25,7 +24,15 @@ function Promise_http_request(_url, _method, _headerMap, _body)
         _cleanUp = true;
     }
     
-    var _index = http_request(_url, _method, _headerMap, _body);
+    try
+    {
+        var _index = http_request(_url, _method, _headerMap, _body);
+    }
+    catch(_error)
+    {
+        show_debug_message(json_stringify(_error, true));
+        var _index = -1;
+    }
     
     if (_cleanUp)
     {

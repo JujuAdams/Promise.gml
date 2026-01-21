@@ -1,8 +1,6 @@
 // Feather disable all
 
-/// @param url
-
-function Promise_http_get(_url)
+function Promise_buffer_async_group_end()
 {
     static _callbackDict = __PromiseSystem().__callbackDict;
     __PromiseEnsureInstance();
@@ -11,7 +9,7 @@ function Promise_http_get(_url)
     
     try
     {
-        var _index = http_get(_url);
+        var _index = buffer_async_group_end();
     }
     catch(_error)
     {
@@ -21,11 +19,11 @@ function Promise_http_get(_url)
     
     if (_index >= 0)
     {
-        _callbackDict[$ $"HTTP {_index}"] = _promise;
+        _callbackDict[$ $"Save/Load {_index}"] = _promise;
     }
     else
     {
-        _promise.Reject({ id: -1, status: -1, http_status: 404, result: "", url: _url, response_headers: {} });
+        _promise.Reject({ id: -1, status: false });
     }
     
     return _promise;

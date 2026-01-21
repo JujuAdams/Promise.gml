@@ -116,22 +116,22 @@ if (button("messages"))
 {
     with({ ip: "", port: "", alias: "" })
     {
-        get_string_promise("IP?", "127.0.0.1").Then(
-            function(_ip)
+        Promise_get_string_async("IP?", "127.0.0.1").Then(
+            function(_asyncStruct)
             {
-                ip = _ip;
-                return get_string_promise("Port?", "5394");
+                ip = _asyncStruct.result;
+                return Promise_get_string_async("Port?", "5394");
             }
         ).Then(
-            function(_port)
+            function(_asyncStruct)
             {
-                port = _port;
-                return get_string_promise("Alias?", "Me");
+                port = _asyncStruct.result;
+                return Promise_get_string_async("Alias?", "Me");
             }
         ).Then(
-            function(_alias)
+            function(_asyncStruct)
             {
-                alias = _alias;
+                alias = _asyncStruct.result;
                 show_debug_message([ip, port, alias]);
             }
         ).Catch(

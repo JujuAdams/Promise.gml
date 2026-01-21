@@ -1,8 +1,9 @@
 // Feather disable all
 
-/// @param url
+/// @param string
+/// @param default
 
-function Promise_http_get(_url)
+function Promise_get_string_async(_string, _default)
 {
     static _callbackDict = __PromiseSystem().__callbackDict;
     __PromiseEnsureInstance();
@@ -11,7 +12,7 @@ function Promise_http_get(_url)
     
     try
     {
-        var _index = http_get(_url);
+        var _index = get_string_async(_string, _default);
     }
     catch(_error)
     {
@@ -21,11 +22,11 @@ function Promise_http_get(_url)
     
     if (_index >= 0)
     {
-        _callbackDict[$ $"HTTP {_index}"] = _promise;
+        _callbackDict[$ $"Dialog {_index}"] = _promise;
     }
     else
     {
-        _promise.Reject({ id: -1, status: -1, http_status: 404, result: "", url: _url, response_headers: {} });
+        _promise.Reject({ id: -1, status: false, result: "" });
     }
     
     return _promise;
