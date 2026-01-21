@@ -62,11 +62,11 @@ Promise(
 	    }
 	}
 ).Then(
-	function(_val) {
-		trace("resolved!", _val);
+	function(_value) {
+		trace("resolved!", _value);
 	},
-	function(_val) {
-		trace("failed!", _val);
+	function(_value) {
+		trace("failed!", _value);
 	}
 );
 ```
@@ -83,8 +83,8 @@ PromiseAll([
 		}
 	)
 ]).Then(
-	function(values) {
-		trace(values);
+	function(_values) {
+		trace(_values);
 	}
 );
 ```
@@ -93,17 +93,17 @@ PromiseAll([
 
 ```gml
 Promise_http_get("https://yal.cc/ping").Then(
-	function(v) {
-		show_debug_message($"success = {v.result}");
+	function(_value) {
+		show_debug_message($"success = {_value.result}");
 		return Promise_http_get("https://yal.cc/ping");
 	}
 ).Then(
-	function(v) {
-		show_debug_message($"success2 = {v.result}");
+	function(_value) {
+		show_debug_message($"success2 = {_value.result}");
 	}
 ).Catch(
-	function(e) {
-		show_debug_message($"failed = {e}");
+	function(_error) {
+		show_debug_message($"failed = {_error}");
 	}
 );
 ```
