@@ -17,7 +17,9 @@
     {"$GMFolder":"","%Name":"Wrappers","folderPath":"folders/Promise.gml/Wrappers.yy","name":"Wrappers","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
   "ForcedPrefabProjectReferences":[],
-  "IncludedFiles":[],
+  "IncludedFiles":[
+    {"$GMIncludedFile":"","%Name":"promise_gml_license.txt","CopyToMask":-1,"filePath":"datafiles","name":"promise_gml_license.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+  ],
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
