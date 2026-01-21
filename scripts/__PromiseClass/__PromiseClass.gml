@@ -178,7 +178,10 @@ function __PromiseClass(_handler) constructor
         {
             // Promise Resolution Procedure:
             // https://github.com/promises-aplus/promises-spec#the-promise-resolution-procedure
-            if (_newValue == self) show_error("A promise cannot be resolved with itself.", true);
+            if (_newValue == self)
+            {
+                show_error($"A promise cannot be resolved with itself", true);
+            }
             
             if (is_struct(_newValue) || is_method(_newValue))
             {
@@ -233,7 +236,10 @@ function __PromiseClass(_handler) constructor
             {
                 if (not __handled)
                 {
-                    show_debug_message($"Unhandled promise rejection: {__value}");
+                    if (PROMISE_WARN_UNHANDLED_REJECTION)
+                    {
+                        __PromiseTrace($"Warning! Unhandled promise rejection: {__value}");
+                    }
                 }
             });
         }

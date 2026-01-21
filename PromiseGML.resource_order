@@ -1,9 +1,10 @@
 {
   "FolderOrderSettings":[
     {"name":"Promise.gml","order":1,"path":"folders/Promise.gml.yy",},
-    {"name":"(System)","order":4,"path":"folders/Promise.gml/(System).yy",},
-    {"name":"Extensions","order":1,"path":"folders/Promise.gml/Extensions.yy",},
-    {"name":"Wrappers","order":3,"path":"folders/Promise.gml/Wrappers.yy",},
+    {"name":"(System)","order":5,"path":"folders/Promise.gml/(System).yy",},
+    {"name":"Core","order":2,"path":"folders/Promise.gml/Core.yy",},
+    {"name":"Extensions","order":3,"path":"folders/Promise.gml/Extensions.yy",},
+    {"name":"Wrappers","order":4,"path":"folders/Promise.gml/Wrappers.yy",},
   ],
   "ResourceOrderSettings":[
     {"name":"__PromiseObject","order":1,"path":"objects/__PromiseObject/__PromiseObject.yy",},
@@ -12,7 +13,10 @@
     {"name":"__PromiseClass","order":3,"path":"scripts/__PromiseClass/__PromiseClass.yy",},
     {"name":"__PromiseClassCustom","order":4,"path":"scripts/__PromiseClassCustom/__PromiseClassCustom.yy",},
     {"name":"__PromiseClassDeferred","order":5,"path":"scripts/__PromiseClassDeferred/__PromiseClassDeferred.yy",},
+    {"name":"__PromiseConstants","order":1,"path":"scripts/__PromiseConstants/__PromiseConstants.yy",},
     {"name":"__PromiseEnsureInstance","order":2,"path":"scripts/__PromiseEnsureInstance/__PromiseEnsureInstance.yy",},
+    {"name":"__PromiseError","order":7,"path":"scripts/__PromiseError/__PromiseError.yy",},
+    {"name":"__PromiseTrace","order":6,"path":"scripts/__PromiseTrace/__PromiseTrace.yy",},
     {"name":"call_later_ext","order":4,"path":"scripts/call_later_ext/call_later_ext.yy",},
     {"name":"Promise_buffer_async_group_end","order":3,"path":"scripts/Promise_buffer_async_group_end/Promise_buffer_async_group_end.yy",},
     {"name":"Promise_get_string_async","order":4,"path":"scripts/Promise_get_string_async/Promise_get_string_async.yy",},

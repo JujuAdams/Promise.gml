@@ -16,7 +16,11 @@ function Promise_http_get_file(_url, _filename)
     }
     catch(_error)
     {
-        show_debug_message(json_stringify(_error, true));
+        if (PROMISE_VERBOSE_HTTP_ERRORS)
+        {
+            show_debug_message(json_stringify(_error, true));
+        }
+        
         var _index = -1;
     }
     

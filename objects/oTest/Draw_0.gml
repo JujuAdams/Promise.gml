@@ -138,10 +138,14 @@ if (button("messages"))
 
 if (button("timeout"))
 {
-    PromiseTimeout(500, function(){}).Catch(
+    PromiseTimeout(500, undefined, function(){}).Then(
         function()
         {
-            show_debug_message("failure (which is good)");
+            show_debug_message("This should never appear");
+        },
+        function()
+        {
+            show_debug_message("failure (which is expected)");
         }
     );
 }

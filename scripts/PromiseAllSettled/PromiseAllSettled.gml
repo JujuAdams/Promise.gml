@@ -12,7 +12,7 @@ function PromiseAllSettled(_array)
             {
                 try
                 {
-                    show_error("AllSettled() accepts an array", 0);
+                    show_error($"PromiseAllSettled() must be given an array (type=\"{__array}\")", false);
                 }
                 catch(_error)
                 {

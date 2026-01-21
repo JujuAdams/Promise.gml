@@ -12,7 +12,7 @@ function PromiseRace(_array)
             {
                 try
                 {
-                    show_error("Race() accepts an array", 0);
+                    show_error($"PromiseRace() must be given an array (type=\"{__array}\")", false);
                 }
                 catch(_error)
                 {

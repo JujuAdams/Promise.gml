@@ -30,7 +30,11 @@ function Promise_http_request(_url, _method, _headerMap, _body)
     }
     catch(_error)
     {
-        show_debug_message(json_stringify(_error, true));
+        if (PROMISE_VERBOSE_HTTP_ERRORS)
+        {
+            show_debug_message(json_stringify(_error, true));
+        }
+        
         var _index = -1;
     }
     
