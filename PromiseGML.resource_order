@@ -13,6 +13,8 @@
     {"name":"__PromiseClass","order":3,"path":"scripts/__PromiseClass/__PromiseClass.yy",},
     {"name":"__PromiseClassCustom","order":4,"path":"scripts/__PromiseClassCustom/__PromiseClassCustom.yy",},
     {"name":"__PromiseClassDeferred","order":5,"path":"scripts/__PromiseClassDeferred/__PromiseClassDeferred.yy",},
+    {"name":"__PromiseClassScopeInstance","order":9,"path":"scripts/__PromiseClassScopeInstance/__PromiseClassScopeInstance.yy",},
+    {"name":"__PromiseClassScopeStruct","order":8,"path":"scripts/__PromiseClassScopeStruct/__PromiseClassScopeStruct.yy",},
     {"name":"__PromiseConstants","order":1,"path":"scripts/__PromiseConstants/__PromiseConstants.yy",},
     {"name":"__PromiseEnsureInstance","order":2,"path":"scripts/__PromiseEnsureInstance/__PromiseEnsureInstance.yy",},
     {"name":"__PromiseError","order":7,"path":"scripts/__PromiseError/__PromiseError.yy",},

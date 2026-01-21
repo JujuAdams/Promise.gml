@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__PromiseClassScopeStruct",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__PromiseClassScopeStruct",
+  "parent":{
+    "name":"(System)",
+    "path":"folders/Promise.gml/(System).yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

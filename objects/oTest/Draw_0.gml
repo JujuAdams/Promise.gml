@@ -149,3 +149,19 @@ if (button("timeout"))
         }
     );
 }
+
+if (button("scope tracking start"))
+{
+    testScope = {};
+    PromiseCustom(testScope, "dead").Catch(
+        function(_value)
+        {
+            show_debug_message(_value);
+        }
+    );
+}
+
+if (button("scope tracking end"))
+{
+    testScope = undefined;
+}

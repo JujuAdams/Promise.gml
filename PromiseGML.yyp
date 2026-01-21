@@ -31,6 +31,8 @@
     {"id":{"name":"__PromiseClass","path":"scripts/__PromiseClass/__PromiseClass.yy",},},
     {"id":{"name":"__PromiseClassCustom","path":"scripts/__PromiseClassCustom/__PromiseClassCustom.yy",},},
     {"id":{"name":"__PromiseClassDeferred","path":"scripts/__PromiseClassDeferred/__PromiseClassDeferred.yy",},},
+    {"id":{"name":"__PromiseClassScopeInstance","path":"scripts/__PromiseClassScopeInstance/__PromiseClassScopeInstance.yy",},},
+    {"id":{"name":"__PromiseClassScopeStruct","path":"scripts/__PromiseClassScopeStruct/__PromiseClassScopeStruct.yy",},},
     {"id":{"name":"__PromiseConfig","path":"scripts/__PromiseConfig/__PromiseConfig.yy",},},
     {"id":{"name":"__PromiseConstants","path":"scripts/__PromiseConstants/__PromiseConstants.yy",},},
     {"id":{"name":"__PromiseEnsureInstance","path":"scripts/__PromiseEnsureInstance/__PromiseEnsureInstance.yy",},},
