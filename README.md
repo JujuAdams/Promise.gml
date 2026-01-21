@@ -1,13 +1,18 @@
-# This is a fork of [YellowAfterlife's work](https://github.com/YAL-GameMaker/Promise.gml)
+<h1 align="center">Promise.gml 1.2.0</h1>
+
+<p align="center">JS Promises for GameMaker 2024.14</p>
+
+<p align="center"><a href="https://github.com/JujuAdams/Promise.gml/releases/">Download the .yymps</a></p>
 
 &nbsp;
 
-# Promise.gml
-An adaptation of JavaScript
-[Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
-for GameMaker Studio 2024.14, based on [this polyfill](https://github.com/taylorhakes/promise-polyfill).
+## Authorship
 
-## JS➜GML Equivalents
+This library is "made" by me, Juju Adams, but it is heavily based on prior work by [YellowAfterlife](https://github.com/YAL-GameMaker/Promise.gml). His work is, in turn, based on a JS Promise polyfill by [Taylor Hakes](https://github.com/taylorhakes/promise-polyfill).
+
+&nbsp;
+
+## JS ➜ GML Equivalents
 
 GameMaker does not allow using built-in function names as variable names, so:
 
@@ -22,28 +27,39 @@ GameMaker does not allow using built-in function names as variable names, so:
 - [Promise.reject](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/race) ➜ `PromiseReject()`
 - [Promise.resolve](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve) ➜ `PromiseResolve()`
 
-## Changes
+GameMaker also does not allow naming methods same as keywords, therefore:
 
-GameMaker does not allow naming methods same as keywords, therefore:
+- `.then` ➜ `.Then`
+- `.catch` ➜ `.Catch`
+- `.finally` ➜ `.Finally`
+- `.all` ➜ `.All`
 
-- `then` ➜ `Then`
-- `catch` ➜ `Catch`
-- `finally` ➜ `Finally`
-- `all` ➜ `All`
+&nbsp;
+
+## Extra Promise Types
+
+I found it helpful to create some new promise types to make the library easier to work with. `PromiseTimeout()` and `PromiseDelay()` will wait an amount of real time before completing the promise (rejection in the case of `PromiseTimeout()`, resolve in the case of `PromiseDelay()`).
+
+To make integration with native GameMaker code easier, I added `PromiseCustom()` which exposes the resolve and reject functions as public methods. You should call these functions with the return value when whatever process you're doing has completed. You can get a promise made with `PromiseCustom()` track a particular scope (a struct or an instance) to ensure that promises always fire off even if your game does something unexpected.
+
+&nbsp;
 
 ## Examples
 
 Can also be found in the sample project, along with supporting scripts.
 
-Basic (ft. custom setTimeout):
+### Basic
+
+Featuring a custom [`call_later_ext()`](https://github.com/JujuAdams/Promise.gml/blob/master/scripts/call_later_ext/call_later_ext.gml)).
+
 ```gml
 Promise(
-	function(done, fail) {
-		setTimeout(
-		function(_done, _fail) {
-			if (random(2) >= 1) _done("hello!"); else _fail("bye!");
-		},
-		250, done, fail);
+	function(_resolve, _reject) {
+	    if (random(1)) {
+			call_later_ext(250, _resolve, "hello!");
+	    } else {
+			call_later_ext(250, _reject, "bye!");
+	    }
 	}
 ).Then(
 	function(_val) {
@@ -55,14 +71,15 @@ Promise(
 );
 ```
 
-afterAll:
+### `PromiseAll()`
+
 ```gml
 PromiseAll([
 	PromiseResolve(3),
 	42,
 	Promise(
-		function(resolve, reject) {
-			setTimeout(resolve, 100, "foo");
+		function(_resolve, _reject) {
+		    call_later_ext(100, _resolve, "hello!");
 		}
 	)
 ]).Then(
@@ -72,26 +89,29 @@ PromiseAll([
 );
 ```
 
-Chaining HTTP requests (ft. custom HTTP wrappers):
+### Chaining HTTP requests
+
 ```gml
-http_get_promise("https://yal.cc/ping").Then(
+Promise_http_get("https://yal.cc/ping").Then(
 	function(v) {
-		trace("success", v);
-		return http_get_promise("https://yal.cc/ping");
+		show_debug_message($"success = {v.result}");
+		return Promise_http_get("https://yal.cc/ping");
 	}
 ).Then(
 	function(v) {
-		trace("success2", v);
+		show_debug_message($"success2 = {v.result}");
 	}
 ).Catch(
 	function(e) {
-		trace("failed", e);
+		show_debug_message($"failed = {e}");
 	}
 );
 ```
 
+&nbsp;
+
 ## Caveats
 
-* Non-exact naming (but feel free to pick your own aliases).
-* Have to "promisify" built-in functions to be able to finely use them with promises.
-* I could not port the original JS library's unit tests because their dependencies have far more code than the library itself.
+- PascalCase naming which is not to everyone's taste
+- Have to "promisify" built-in functions, but made easier by `PromiseCustom()`
+- Original JS library's unit tests have not been ported
