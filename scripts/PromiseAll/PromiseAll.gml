@@ -15,7 +15,7 @@ function PromiseAll(_array)
             {
                 try
                 {
-                    show_error("All() accepts an array", 0);
+                    show_error("All() accepts an array", false);
                 }
                 catch(_error)
                 {

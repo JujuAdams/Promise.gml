@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"setTimeout",
+  "%Name":"PromiseTimeout",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"setTimeout",
+  "name":"PromiseTimeout",
   "parent":{
-    "name":"Async",
-    "path":"folders/Demo/Async.yy",
+    "name":"Extensions",
+    "path":"folders/Promise.gml/Extensions.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

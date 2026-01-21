@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"PromiseAllSettled",
+  "%Name":"call_later_ext",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"PromiseAllSettled",
+  "name":"call_later_ext",
   "parent":{
-    "name":"Core",
-    "path":"folders/Promise.gml/Core.yy",
+    "name":"PromiseGML",
+    "path":"PromiseGML.yyp",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

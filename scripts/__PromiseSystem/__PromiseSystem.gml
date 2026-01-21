@@ -25,11 +25,27 @@ function __PromiseSystem()
         show_debug_message("Welcome to Promise.gml by YellowAfterlife with edits by Juju Adams! Promise.gml is built on top of work by Taylor Hakes. This is version 1.1.0, 2026-01-20");
         
         __soonArray = [];
+        __timeoutPQ = ds_priority_create();
         
         __callbackDict = {};
         
         time_source_start(time_source_create(time_source_global, 1, time_source_units_frames, function()
         {
+            //Handle delayed promises made by `PromiseDelay()` or `PromiseTimeout()`
+            var _pq = __timeoutPQ;
+            while (not ds_priority_empty(_pq))
+            {
+                var _function = ds_priority_find_min(_pq);
+                if (ds_priority_find_priority(_pq, _function) > current_time)
+                {
+                    break;
+                }
+                
+                ds_priority_delete_min(_pq);
+                _function();
+            }
+            
+            //Handle globally deferred promise resolution
             static _workArray = [];
             array_resize(_workArray, 0);
             

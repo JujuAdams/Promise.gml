@@ -17,8 +17,8 @@
   ],
   "name":"rTest",
   "parent":{
-    "name":"Demo",
-    "path":"folders/Demo.yy",
+    "name":"PromiseGML",
+    "path":"PromiseGML.yyp",
   },
   "parentRoom":null,
   "physicsSettings":{

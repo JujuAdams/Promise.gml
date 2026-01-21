@@ -9,13 +9,16 @@ var button = function(name)
 if (button("Chain"))
 {
     Promise(
-        function(done, fail)
+        function(_resolve, _reject)
         {
-            setTimeout(function(_done, _fail)
+            if (random(1))
             {
-                if (0) _done("hello!"); else _fail("bye!");
-            },
-            1000, done, fail);
+                return _resolve("hello");
+            }
+            else
+            {
+                return _reject("goodbye");
+            }
         }
     ).Then(
         function(_value)
@@ -41,7 +44,7 @@ if (button("All()"))
         42,
         Promise(function(_resolve, _reject)
         {
-            setTimeout(_resolve, 100, "foo");
+            call_later_ext(200, _resolve, "foo");
         })
     ]).Then(
         function(_values)
@@ -58,7 +61,7 @@ if (button("AllSettled()"))
         42,
         Promise(function(_resolve, _reject)
         {
-            setTimeout(_reject, 100, "drats");
+            call_later_ext(200, _reject, "drats");
         })
     ]).Then(
         function(_values)
@@ -71,18 +74,8 @@ if (button("AllSettled()"))
 if (button("Race()"))
 {
     PromiseRace([
-        Promise(
-            function(_resolve, _reject)
-            {
-                setTimeout(_resolve, 500, "one");
-            }
-        ),
-        Promise(
-            function(_resolve, _reject)
-            {
-                setTimeout(_resolve, 100, "two");
-            }
-        ),
+        PromiseDelay(500, "one"),
+        PromiseDelay(100, "two"),
     ]).Then(
         function(_value)
         {
@@ -141,4 +134,14 @@ if (button("messages"))
             }
         );
     }
+}
+
+if (button("timeout"))
+{
+    PromiseTimeout(500, function(){}).Catch(
+        function()
+        {
+            show_debug_message("failure (which is good)");
+        }
+    );
 }

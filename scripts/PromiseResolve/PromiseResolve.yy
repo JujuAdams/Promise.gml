@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"PromiseResolve",
   "parent":{
-    "name":"Promise.gml",
-    "path":"folders/Promise.gml.yy",
+    "name":"Core",
+    "path":"folders/Promise.gml/Core.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

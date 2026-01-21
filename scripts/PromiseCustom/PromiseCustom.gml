@@ -1,8 +1,8 @@
 // Feather disable all
 
-/// Creates a promise with expose resolve and reject functions. This sort of promise can be used
-/// more easily with other GameMaker features, especially the event system. When you'd like to pass
-/// a value back into a promise, call either of the following two functions:
+/// Creates a promise with exposed resolve and reject functions. This sort of promise can be used
+/// more easily with other GameMaker features, especially native Asunc Events. When you'd like to
+/// pass a value back into a promise, call either of the following two functions:
 /// 
 /// .Resolve(value)
 ///     Passes the value back into the promise as a successful operation.

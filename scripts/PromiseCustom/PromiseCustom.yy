@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"PromiseCustom",
   "parent":{
-    "name":"Promise.gml",
-    "path":"folders/Promise.gml.yy",
+    "name":"Extensions",
+    "path":"folders/Promise.gml/Extensions.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
