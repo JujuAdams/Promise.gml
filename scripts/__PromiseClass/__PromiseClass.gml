@@ -30,6 +30,11 @@ function __PromiseClass(_handler) constructor
         return _deferred.__promise;
     }
     
+    static ThenReverse = function(_onRejected, _onFulfilled)
+    {
+        return Then(_onFulfilled, _onRejected);
+    }
+    
     static Catch = function(_onRejected)
     {
         return Then(undefined, _onRejected);

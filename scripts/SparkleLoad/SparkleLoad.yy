@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"SparkleLoad",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"SparkleLoad",
+  "parent":{
+    "name":"PromiseGML",
+    "path":"PromiseGML.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

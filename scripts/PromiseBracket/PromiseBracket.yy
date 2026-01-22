@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"PromiseBracket",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"PromiseBracket",
+  "parent":{
+    "name":"PromiseGML",
+    "path":"PromiseGML.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

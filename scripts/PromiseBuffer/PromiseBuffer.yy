@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"PromiseBuffer",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"PromiseBuffer",
+  "parent":{
+    "name":"PromiseGML",
+    "path":"PromiseGML.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
